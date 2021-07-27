@@ -1,5 +1,5 @@
 import * as Constants from '../constants.js';
-import Router from '../router.js';
+import Router from '../core/router.js';
 
 /**
  * Register the rest of your routes below. The following can be deleted or

@@ -1,5 +1,5 @@
 
-import Router, { checkStatus, handleError } from '../router.js';
+import Router, { checkStatus, handleError } from '../core/router.js';
 let axiosDefaults = require('axios/lib/defaults');
 
 describe('Route is set and returns the expected URL', () => {
@@ -65,7 +65,7 @@ describe('Route is set and returns the expected URL', () => {
     };
 
     let theRequest = Router.request('post', routeName, {
-      args: {
+      data: {
         id: testId
       }
     }, customHeaders);

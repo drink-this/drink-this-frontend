@@ -1,4 +1,4 @@
-import RenderManager from '../RenderManager.js';
+import RenderManager from '../core/RenderManager.js';
 import React from 'react';
 
 class TestComponent extends React.Component {

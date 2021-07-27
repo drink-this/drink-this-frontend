@@ -1,4 +1,4 @@
-import AppDispatcher from '../dispatcher.js';
+import AppDispatcher from '../core/dispatcher.js';
 import ExampleStore from '../stores/ExampleStore.js';
 import React from 'react';
 

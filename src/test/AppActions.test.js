@@ -1,5 +1,5 @@
 import AppActions from '../actions/AppActions.js';
-import AppDispatcher from '../dispatcher.js';
+import AppDispatcher from '../core/dispatcher.js';
 import TestStore from './TestStore.js';
 
 test('Action is registered and can be called', () => {

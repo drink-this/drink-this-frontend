@@ -1,7 +1,7 @@
-import RenderManager from './RenderManager.js';
+import RenderManager from './core/RenderManager.js';
 
-require('./bootstrap');
-require('./render');
+require('./core/boot');
+require('./components/render');
 
 
 RenderManager.renderElements();
