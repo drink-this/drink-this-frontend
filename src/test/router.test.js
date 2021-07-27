@@ -16,14 +16,10 @@ describe('Route is set and returns the expected URL', () => {
     });
   });
 
-  it('tests the route functions', () => {
-    let partialRouteMock = jest.spyOn(Router, 'partialRoute');
-    partialRouteMock.mockClear();
-
+  it('tests the route function calls partialRoute', () => {
     let theExpectedUrl = `${testRoot}${testRoute}`
     let theActualUrl = Router.route(routeName, {id: testId});
 
-    expect(partialRouteMock).toHaveBeenCalledTimes(1);
     expect(theActualUrl).toBe(theExpectedUrl);
   });
 
@@ -40,12 +36,13 @@ describe('Route is set and returns the expected URL', () => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': 'Not Defined'
-      }
+        'X-CSRF-TOKEN': null
+      },
+      data: {}
     };
 
     let theRequest = Router.request('post', routeName, {
-      args: {
+      path_args: {
         id: testId
       }
     });
@@ -56,17 +53,23 @@ describe('Route is set and returns the expected URL', () => {
     let customHeaders = {
       'Accept': 'application/json',
       'Content-Type': 'multipart/form-data',
-      'X-CSRF-TOKEN': 'Not Defined'
+      'X-CSRF-TOKEN': null
     }
     let theExpectedRequest = {
       method: 'post',
       url: testRoute,
-      headers: customHeaders
+      headers: customHeaders,
+      data: {
+        name: 'test'
+      }
     };
 
     let theRequest = Router.request('post', routeName, {
-      data: {
+      path_args: {
         id: testId
+      },
+      params: {
+        name: 'test'
       }
     }, customHeaders);
     expect(theRequest).toEqual(theExpectedRequest);
@@ -77,10 +80,6 @@ describe('Route is set and returns the expected URL', () => {
 test('checkStatus throws Error on status not in the range [200, 400]', () => {
   let responses = [{
     status: 400
-  }, {
-    status: 200
-  }, {
-    status: 300
   }];
 
   responses.map(theTestResponse => {

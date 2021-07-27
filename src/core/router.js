@@ -1,11 +1,10 @@
-
 let axiosDefaults = require('axios/lib/defaults');
 
 export function getCSRF() {
   try {
     return window.axios.defaults.headers.common['X-CSRF-TOKEN']
   } catch (error) {
-    return 'Not Defined';
+    return null;
   }
 }
 
@@ -19,7 +18,7 @@ class Router {
   constructor() {
     this._routes = new Map();
     try {
-      axiosDefaults.baseURL = 'Backend URL';
+      axiosDefaults.baseURL = 'https://';
     } catch(error) {
       // Do nothing
     }
@@ -34,9 +33,9 @@ class Router {
   }
 
   partialRoute(name, args) {
-    let route = this._routes.get(name);
-    if (route instanceof Function) {
-      return route(args);
+    let registered_route = this._routes.get(name);
+    if (registered_route instanceof Function) {
+      return registered_route(args);
     }
     console.error(`The route ${name} was not registered or is not a function`);
   }
@@ -49,12 +48,18 @@ class Router {
     window.location.href = url;
   }
 
-  request(type, routeName, requestBody = {}, headers = HEADERS) {
+  request(type, routeName, requestData = {}, headers = HEADERS) {
+    if (requestData.params == null) {
+      requestData.params = {}
+    }
+    if (requestData.path_args == null) {
+      requestData.path_args = {}
+    }
     return {
       method: type,
-      url: this.partialRoute(routeName, requestBody.args),
+      url: this.partialRoute(routeName, requestData.path_args),
       headers: headers,
-      data: requestBody.data
+      data: requestData.params
     }
   }
 }
