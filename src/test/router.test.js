@@ -74,11 +74,11 @@ describe('Route is set and returns the expected URL', () => {
 
 });
 
-test('checkStatus throws Error on status not in the range [200, 300)', () => {
+test('checkStatus throws Error on status not in the range [200, 400]', () => {
   let responses = [{
     status: 400
   }, {
-    status: 199
+    status: 200
   }, {
     status: 300
   }];

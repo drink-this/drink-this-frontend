@@ -52,7 +52,7 @@ class Router {
   request(type, routeName, requestBody = {}, headers = HEADERS) {
     return {
       method: type,
-      url: this.partialRoute(routeName, requestData.args),
+      url: this.partialRoute(routeName, requestBody.args),
       headers: headers,
       data: requestBody.data
     }
