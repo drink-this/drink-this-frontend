@@ -1,6 +1,6 @@
-Project: Consultancy - Drink This
+#####Project: Consultancy - Drink This
 
-### Group Member Names:
+## Group Member Names:
 #### Molly, Richard, Taija, Jermaine, Zach & Mark
 
 **Goals and Expectations for the Project (What does each group member hope to get out of this project? What do we want to achieve as a team? How will we know that we're successful?):**  
