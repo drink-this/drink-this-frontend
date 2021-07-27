@@ -7,7 +7,7 @@ import { GET_EXAMPLE_MESSAGE } from '../../constants.js';
 
 Actions.register(GET_EXAMPLE_MESSAGE, payload => {
   Axios(Router.request('GET', GET_EXAMPLE_MESSAGE, {
-    args: {id: payload.id}
+    path_args: {id: payload.id}
   }))
   .then(checkStatus)
   .then(response => {
