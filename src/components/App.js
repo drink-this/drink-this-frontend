@@ -6,6 +6,7 @@ import {
   GET_EXAMPLE_MESSAGE,
   MAIN_ID
 } from '../constants.js';
+import Logo from './Logo.js';
 
 export default class App extends React.Component {
 
@@ -44,6 +45,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
+        <Logo />
         <h3>
           {this.state.exampleMessage}
         </h3>
