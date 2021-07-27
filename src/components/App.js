@@ -9,7 +9,8 @@ import {
 
 export default class App extends React.Component {
 
-  constructor(props, context) {
+  constructor(props) {
+    super(props)
     this.state = {
       exampleMessage: ExampleStore.getExampleMessage(),
       status: ExampleStore.getStatus()

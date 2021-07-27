@@ -1,7 +1,8 @@
+import Actions from './actions/AppActions.js';
+
 var Dispatcher = require('flux').Dispatcher;
 var AppDispatcher = new Dispatcher();
 
-import Actions from './actions/AppActions.js';
 
 AppDispatcher.register((payload) => {
   Actions.call(payload);
