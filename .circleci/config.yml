@@ -5,18 +5,20 @@ orbs:
   node: circleci/node@4.1
 
 jobs:
-  install-node-example:
+  install-node-and-test:
     docker:
       - image: 'cimg/base:stable'
     steps:
       - checkout
       - node/install:
           install-yarn: true
+      - run: npm -f install 
       - run: node --version
+      - run: npm run test
 workflows:
   test_my_app:
     jobs:
-      - install-node-example
+      - install-node-and-test
 
 # workflows:
 #   main:
