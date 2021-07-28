@@ -4,11 +4,25 @@ version: 2.1
 orbs:
   node: circleci/node@4.1
 
+jobs:
+install-node-example:
+  docker:
+    - image: 'cimg/base:stable'
+  steps:
+    - checkout
+    - node/install:
+        install-yarn: true
+    - run: node --version
 workflows:
-  main:
-    jobs:
-      - node/test:
-          version: '16.2'
-          # This is the node version to use for the `cimg/node` tag
-          # Relevant tags can be found on the CircleCI Developer Hub
-          # https://circleci.com/developer/images/image/cimg/node
+test_my_app:
+  jobs:
+    - install-node-example
+
+# workflows:
+#   main:
+#     jobs:
+#       - node/test:
+#           version: '16.2'
+#           # This is the node version to use for the `cimg/node` tag
+#           # Relevant tags can be found on the CircleCI Developer Hub
+#           # https://circleci.com/developer/images/image/cimg/node
