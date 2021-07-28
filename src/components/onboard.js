@@ -1,5 +1,5 @@
 import React from 'react';
-import Star from './Star.js'
+import Star from './star.js'
 const _ = require('lodash');
 
 export default class Onboard extends React.Component {
@@ -16,7 +16,7 @@ export default class Onboard extends React.Component {
                 <img src={image} alt="Cocktail image" />
                 <p className="mt-4">Cocktail Name</p>
                 <div className="flex mt-4 justify-center">
-                  <Star fill='black'/>
+                  <Star />
                   <Star />
                   <Star />
                   <Star />
