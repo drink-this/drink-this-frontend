@@ -57,12 +57,8 @@ export default class App extends React.Component {
         <Link to="/">Home</Link>
         <Link to="/onboard">Onboard</Link>
         <Switch>
-          <Route path="/onboard">
-            <Onboard />   
-          </Route>
-          <Route path="/">
-            <Landing />   
-          </Route>
+          <Route path="/onboard" component={Onboard} />
+          <Route path="/" component={Landing} />
         </Switch>
       </Router>
     );
