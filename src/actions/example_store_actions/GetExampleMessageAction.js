@@ -1,4 +1,4 @@
-import Actions from '../AppActions.js';
+import Actions from '../../core/AppActions.js';
 import Axios from 'axios';
 import ExampleStore from '../../stores/ExampleStore.js';
 import Router, { checkStatus, handleError } from '../../core/router.js';
