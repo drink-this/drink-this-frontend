@@ -1,4 +1,4 @@
-import App from './components/App.js';
+import App from './components/app.js';
 import ReactDOM from 'react-dom';
 import './fonts/PlayfairDisplay-Black.ttf';
 import './index.css';
