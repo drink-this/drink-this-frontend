@@ -7,10 +7,9 @@ import {
   Link
 } from "react-router-dom";
 import React from 'react';
-import Logo from './Logo.js';
+import Header from './Header.js';
 import Landing from './Landing.js';
 import Onboard from './Onboard.js';
-import Search from './Search.js';
 
 import {
   GET_EXAMPLE_MESSAGE,
@@ -54,10 +53,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Router>
-          <Logo />
-          <Search />
-        <Link to="/">Home</Link>
-        <Link to="/onboard">Onboard</Link>
+        <Header />
         <Switch>
           <Route path="/onboard" component={Onboard} />
           <Route path="/" component={Landing} />
