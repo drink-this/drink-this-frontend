@@ -1,6 +1,15 @@
 import AppDispatcher from '../core/dispatcher.js';
 import ExampleStore from '../stores/ExampleStore.js';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import React from 'react';
+import Logo from './Logo.js';
+import Landing from './Landing.js';
+import Onboard from './Onboard.js';
 
 import {
   GET_EXAMPLE_MESSAGE,
@@ -43,11 +52,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>
-          {this.state.exampleMessage}
-        </h3>
-      </div>
+      <Router>
+        <Logo />
+        <Link to="/">Home</Link>
+        <Link to="/onboard">Onboard</Link>
+        <Switch>
+        <Route path="/">
+          <Landing />   
+        </Route>
+        <Route path="/onboard">
+          <Onboard />   
+        </Route>
+        </Switch>
+      </Router>
     );
   }
 }
