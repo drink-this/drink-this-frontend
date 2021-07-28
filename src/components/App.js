@@ -10,6 +10,7 @@ import React from 'react';
 import Logo from './Logo.js';
 import Landing from './Landing.js';
 import Onboard from './Onboard.js';
+import Search from './Search.js';
 
 import {
   GET_EXAMPLE_MESSAGE,
@@ -53,7 +54,8 @@ export default class App extends React.Component {
   render() {
     return (
       <Router>
-        <Logo />
+          <Logo />
+          <Search />
         <Link to="/">Home</Link>
         <Link to="/onboard">Onboard</Link>
         <Switch>
