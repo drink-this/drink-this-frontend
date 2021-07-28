@@ -7,9 +7,10 @@ import {
   Link
 } from "react-router-dom";
 import React from 'react';
-import Logo from './logo.js';
+import Header from './Header.js';
 import Landing from './landing.js';
 import Onboard from './onboard.js';
+import SearchResults from './SearchResults.js'
 
 import {
   GET_EXAMPLE_MESSAGE,

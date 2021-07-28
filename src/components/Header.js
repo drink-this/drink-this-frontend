@@ -1,4 +1,4 @@
-import Logo from "./Logo";
+import Logo from "./logo.js";
 import Search from "./Search";
 
 const Header = () => {
