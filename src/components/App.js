@@ -8,8 +8,9 @@ import {
 } from "react-router-dom";
 import React from 'react';
 import Header from './Header.js';
-import Landing from './Landing.js';
 import Onboard from './Onboard.js';
+import Landing from './Landing.js';
+import SearchResults from './SearchResults.js';
 
 import {
   GET_EXAMPLE_MESSAGE,
@@ -55,6 +56,7 @@ export default class App extends React.Component {
       <Router>
         <Header />
         <Switch>
+          <Route path="/search" component={SearchResults} />
           <Route path="/onboard" component={Onboard} />
           <Route path="/" component={Landing} />
         </Switch>

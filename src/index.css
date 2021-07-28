@@ -13,3 +13,9 @@
   src: url('./fonts/PlayfairDisplay-Bold.ttf') format('truetype');
   font-weight: 700;
 }
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('./fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+}

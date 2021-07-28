@@ -3,7 +3,7 @@ import Search from "./Search";
 
 const Header = () => {
   return(
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between mb-10">
       <Logo />
       <div className="flex">
         <div clasName="">
