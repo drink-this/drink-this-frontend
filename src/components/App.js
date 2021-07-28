@@ -15,7 +15,6 @@ import {
   GET_EXAMPLE_MESSAGE,
   MAIN_ID
 } from '../constants.js';
-import Logo from './Logo.js';
 
 export default class App extends React.Component {
 
@@ -58,12 +57,12 @@ export default class App extends React.Component {
         <Link to="/">Home</Link>
         <Link to="/onboard">Onboard</Link>
         <Switch>
-        <Route path="/">
-          <Landing />   
-        </Route>
-        <Route path="/onboard">
-          <Onboard />   
-        </Route>
+          <Route path="/onboard">
+            <Onboard />   
+          </Route>
+          <Route path="/">
+            <Landing />   
+          </Route>
         </Switch>
       </Router>
     );
