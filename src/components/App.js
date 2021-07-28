@@ -15,6 +15,7 @@ import {
   GET_EXAMPLE_MESSAGE,
   MAIN_ID
 } from '../constants.js';
+import Logo from './Logo.js';
 
 export default class App extends React.Component {
 
