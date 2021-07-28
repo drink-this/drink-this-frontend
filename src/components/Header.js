@@ -6,7 +6,7 @@ const Header = () => {
     <div className="flex items-center justify-between mb-10">
       <Logo />
       <div className="flex">
-        <div clasName="">
+        <div>
           <Search />
         </div>
         <p className="font-playfair font-bold hover:underline mx-16">Log Out</p>
