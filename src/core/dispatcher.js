@@ -1,4 +1,4 @@
-import Actions from '../actions/AppActions.js';
+import Actions from './AppActions.js';
 
 var Dispatcher = require('flux').Dispatcher;
 var AppDispatcher = new Dispatcher();
