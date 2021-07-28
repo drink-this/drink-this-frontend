@@ -1,5 +1,5 @@
 import AppDispatcher from '../core/dispatcher.js';
-import ExampleStore from '../stores/ExampleStore.js';
+import ExampleStore from '../stores/example_store.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,9 +7,9 @@ import {
   Link
 } from "react-router-dom";
 import React from 'react';
-import Logo from './Logo.js';
-import Landing from './Landing.js';
-import Onboard from './Onboard.js';
+import Logo from './logo.js';
+import Landing from './landing.js';
+import Onboard from './onboard.js';
 
 import {
   GET_EXAMPLE_MESSAGE,
