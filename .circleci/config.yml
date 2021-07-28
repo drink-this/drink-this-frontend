@@ -10,10 +10,8 @@ jobs:
       - image: 'cimg/base:stable'
     steps:
       - checkout
-      - node/install:
-          install-yarn: true
-      - run: npm -f install 
-      - run: node --version
+      - node/install
+      - run: npm -f install
       - run: npm run test
 workflows:
   test_my_app:
