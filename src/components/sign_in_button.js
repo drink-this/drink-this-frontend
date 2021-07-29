@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default class SignInButton extends React.Component {
   constructor(props) {
@@ -16,6 +17,6 @@ export default class SignInButton extends React.Component {
   }
 
   render () {
-    return <a className='border-2 border-black max-w-md' href='https://drink-this-backend.herokuapp.com/' onClick={this._checkForToken}>Sign In</a>;
+    return <Link className='border-2 border-black max-w-md' to={{ pathname: "http://localhost:8080/auth/google_oauth2" }} target="_blank" onClick={this._checkForToken}>Sign In</Link>;
   }
 }
