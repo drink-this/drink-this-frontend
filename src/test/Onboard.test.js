@@ -1,5 +1,5 @@
 import React from 'react';
-import Onboard from '../components/Onboard.js';
+import Onboard from '../components/onboard.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
 

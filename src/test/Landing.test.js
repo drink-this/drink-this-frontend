@@ -1,5 +1,5 @@
 import React from 'react';
-import Landing from '../components/Landing.js';
+import Landing from '../components/landing.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
 

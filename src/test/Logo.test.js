@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../components/Logo.js';
+import Logo from '../components/logo.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
 

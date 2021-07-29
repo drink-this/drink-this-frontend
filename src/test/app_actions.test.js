@@ -1,6 +1,6 @@
-import AppActions from '../actions/AppActions.js';
+import AppActions from '../core/app_actions.js';
 import AppDispatcher from '../core/dispatcher.js';
-import TestStore from './TestStore.js';
+import TestStore from './test_store.js';
 
 test('Action is registered and can be called', () => {
   let ACTION = 'Test-Action';
