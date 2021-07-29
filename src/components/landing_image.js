@@ -7,7 +7,7 @@ export default class LandingImage extends React.Component {
     render () {
         return (
             <div className='h-screen'>
-                <img className='inline h-screen' src={this.props.src} />
+                <img className='inline h-screen  object-cover' src={this.props.src} />
             </div>
         );
     }
