@@ -6,7 +6,8 @@ export default class SignInButton extends React.Component {
   }
 
   _checkForToken = () => {
-    let token = localStorage.getItem('token')
+    let token = localStorage.getItem('drink_this_user_id')
+
     if (token === null) {
       // do what sign up button does
     } else {
@@ -15,6 +16,6 @@ export default class SignInButton extends React.Component {
   }
 
   render () {
-    return <a className='border-2 border-black max-w-md' href='#' onClick={this._checkForToken}>Sign In</a>;
+    return <a className='border-2 border-black max-w-md' href='https://drink-this-backend.herokuapp.com/' onClick={this._checkForToken}>Sign In</a>;
   }
 }
