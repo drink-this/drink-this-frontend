@@ -3,8 +3,7 @@ import ExampleStore from '../stores/example_store.js';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import React from 'react';
 import Header from './header.js';
