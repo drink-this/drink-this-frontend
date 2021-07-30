@@ -14,12 +14,6 @@ jobs:
       - node/install
       - run: npm -f install
       - run: npm run test
-    heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-        requires:
-          - install-node-and-test
-        filters:
-          branches:
-            only: add_circleci
 workflows:
   test_my_app:
     jobs:
