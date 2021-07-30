@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from '../components/Search.js';
+import Search from '../components/search.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
 

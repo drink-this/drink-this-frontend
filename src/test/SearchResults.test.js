@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchResults from '../components/SearchResults.js';
+import SearchResults from '../components/search_results.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
 import { Router, Route } from 'react-router'
