@@ -1,2 +1,2 @@
-release: npm install -g serve
-web: npm run start
+release: npm install -g serve; which serve
+web: serve -s build
