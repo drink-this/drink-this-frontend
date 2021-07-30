@@ -1,11 +1,12 @@
+
 import React from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from "react-router-dom";
 import AppDispatcher from '../core/dispatcher';
 import AuthStore from '../stores/auth_store';
-const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 import { CONFIRM_LOG_IN, LOGIN_BUTTON_ID } from '../constants';
+const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 const SignInButton = () => {
   let history = useHistory();
@@ -33,10 +34,10 @@ const SignInButton = () => {
   const _onFailure = (response) => {
     console.log(response);
   }
-
+  console.log(process.env);
   return (
     <GoogleLogin
-      clientId={REACT_APP_GOOGLE_CLIENT_ID}
+      clientId={"646257191612-9s120t0dlousuanlitc75hhc1snacpge.apps.googleusercontent.com"}
       buttonText={"Login with Google"}
       onSuccess={_onLoginSuccess}
       onFailure={_onFailure}
