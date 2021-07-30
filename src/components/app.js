@@ -1,5 +1,5 @@
 import AppDispatcher from '../core/dispatcher.js';
-import ExampleStore from '../stores/ExampleStore.js';
+import ExampleStore from '../stores/example_store.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import React from 'react';
 import Header from './Header.js';
-import Onboard from './Onboard.js';
-import Landing from './Landing.js';
+import Landing from './landing.js';
+import Onboard from './onboard.js';
 import SearchResults from './SearchResults.js';
 
 import {

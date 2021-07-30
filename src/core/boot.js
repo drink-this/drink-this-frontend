@@ -40,5 +40,5 @@ if (token) {
 /**
  * Require our routes and all the application actions
  */
-require('../actions/ActionRepo.js');
+require('../actions/action_repo.js');
 require('../config/routes');
