@@ -9,7 +9,7 @@ import React from 'react';
 import Header from './header.js';
 import Landing from './landing.js';
 import Onboard from './onboard.js';
-import SearchResults from './search_results.js'
+import SearchResults from './search_results.js';
 
 import {
   GET_EXAMPLE_MESSAGE,
