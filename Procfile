@@ -1,2 +1,2 @@
 release: npm install -g serve; which serve
-web: serve -s build
+web: /app/.heroku/node/bin/serve -s build
