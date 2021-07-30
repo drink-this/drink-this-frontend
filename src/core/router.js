@@ -18,7 +18,7 @@ class Router {
   constructor() {
     this._routes = new Map();
     try {
-      axiosDefaults.baseURL = 'https://';
+      axiosDefaults.baseURL = 'http://localhost:8080/';
     } catch(error) {
       // Do nothing
     }

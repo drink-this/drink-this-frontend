@@ -1,19 +1,47 @@
 import React from 'react';
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { useHistory } from "react-router-dom";
+import AppDispatcher from '../core/dispatcher';
+import AuthStore from '../stores/auth_store';
 
-export default class SignInButton extends React.Component {
+import { CONFIRM_LOG_IN, LOGIN_BUTTON_ID } from '../constants';
 
-  responseGoogle = (response) => {
-    console.log(response);// This is what is given to us by google
+const SignInButton = () => {
+  let history = useHistory();
+
+  const _finishLogin = () => {
+    history.push("/onboard");
   }
 
-  render () {
-    return <GoogleLogin
-    clientId="646257191612-9s120t0dlousuanlitc75hhc1snacpge.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={this.responseGoogle}
-    onFailure={this.responseGoogle}
-    cookiePolicy={'single_host_origin'}
-  />;
+  AuthStore.on(LOGIN_BUTTON_ID, _finishLogin);
+
+  const _onLoginSuccess = (response) => {
+    console.log(response);
+    let authToken = response.tokenObj.id_token;
+
+    AppDispatcher.dispatch({
+      action: CONFIRM_LOG_IN,
+      authToken: authToken,
+      emitOn: [{
+        store: AuthStore,
+        componentIds: [LOGIN_BUTTON_ID]
+      }]
+    });
   }
+
+  const _onFailure = (response) => {
+    console.log(response);
+  }
+
+  return (
+    <GoogleLogin
+      clientId={"646257191612-9s120t0dlousuanlitc75hhc1snacpge.apps.googleusercontent.com"}
+      buttonText={"Login with Google"}
+      onSuccess={_onLoginSuccess}
+      onFailure={_onFailure}
+      isSignedIn={false}
+      cookiePolicy={'single_host_origin'}
+    />
+  );
 }
+export default SignInButton;
