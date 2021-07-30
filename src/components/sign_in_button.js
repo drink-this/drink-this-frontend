@@ -11,8 +11,8 @@ export default class SignInButton extends React.Component {
     return <GoogleLogin
     clientId=""
     buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
+    onSuccess={this.responseGoogle}
+    onFailure={this.responseGoogle}
     cookiePolicy={'single_host_origin'}
   />;
   }
