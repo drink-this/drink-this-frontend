@@ -1,6 +1,18 @@
-var EventEmitter = require('events').EventEmitter;
+import { EventEmitter } from "events";
 
 class AuthStore extends EventEmitter {
-}
+  constructor() {
+    super();
+    this._isUserNew = false;
+  }
 
-export default new AuthStore();
+  isUserNew = () => {
+    return this._isUserNew;
+  }
+
+  setIsUserNew = (isNew) => {
+    this._isUserNew = isNew;
+  }
+}
+const authStore = new AuthStore();
+export default authStore;

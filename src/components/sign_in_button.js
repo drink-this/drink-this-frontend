@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from "react-router-dom";
 import AppDispatcher from '../core/dispatcher';
-import AuthStore from '../stores/auth_store';
+import authStore from '../stores/auth_store';
 
 import { CONFIRM_LOG_IN, LOGIN_BUTTON_ID } from '../constants';
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
@@ -12,20 +11,25 @@ const SignInButton = () => {
   let history = useHistory();
 
   const _finishLogin = () => {
-    history.push("/onboard");
+    if (authStore.isUserNew()) {
+      history.push("/onboard");
+    } else { 
+      // Go somewhere else
+    }
   }
 
-  AuthStore.on(LOGIN_BUTTON_ID, _finishLogin);
+  authStore.on(LOGIN_BUTTON_ID, _finishLogin);
 
   const _onLoginSuccess = (response) => {
-    console.log(response);
     let authToken = response.tokenObj.id_token;
+    let email = response.profileObj.email;
 
     AppDispatcher.dispatch({
       action: CONFIRM_LOG_IN,
       authToken: authToken,
+      email: email,
       emitOn: [{
-        store: AuthStore,
+        store: authStore,
         componentIds: [LOGIN_BUTTON_ID]
       }]
     });
