@@ -3,6 +3,7 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { useHistory } from "react-router-dom";
 import AppDispatcher from '../core/dispatcher';
 import AuthStore from '../stores/auth_store';
+const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 import { CONFIRM_LOG_IN, LOGIN_BUTTON_ID } from '../constants';
 
@@ -35,7 +36,7 @@ const SignInButton = () => {
 
   return (
     <GoogleLogin
-      clientId={"646257191612-9s120t0dlousuanlitc75hhc1snacpge.apps.googleusercontent.com"}
+      clientId={REACT_APP_GOOGLE_CLIENT_ID}
       buttonText={"Login with Google"}
       onSuccess={_onLoginSuccess}
       onFailure={_onFailure}
