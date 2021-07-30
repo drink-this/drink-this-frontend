@@ -23,4 +23,4 @@ workflows:
             - install-node-and-test
           filters:
             branches:
-              only: add_circleci
+              only: main
