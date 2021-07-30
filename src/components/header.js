@@ -1,5 +1,5 @@
-import Logo from "./Logo";
-import Search from "./Search";
+import Logo from "./logo.js";
+import Search from "./search.js";
 
 const Header = () => {
   return(
