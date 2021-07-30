@@ -3,6 +3,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.1
+  heroku: circleci/heroku@0.0.10
 
 jobs:
   install-node-and-test:
@@ -13,13 +14,13 @@ jobs:
       - node/install
       - run: npm -f install
       - run: npm run test
-    heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
-        requires:
-          - install-node-and-test
-        filters:
-          branches:
-            only: main
 workflows:
   test_my_app:
     jobs:
       - install-node-and-test
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          requires:
+            - install-node-and-test
+          filters:
+            branches:
+              only: main
