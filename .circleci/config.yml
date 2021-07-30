@@ -13,16 +13,13 @@ jobs:
       - node/install
       - run: npm -f install
       - run: npm run test
+    heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+        requires:
+          - install-node-and-test
+        filters:
+          branches:
+            only: main
 workflows:
   test_my_app:
     jobs:
       - install-node-and-test
-
-# workflows:
-#   main:
-#     jobs:
-#       - node/test:
-#           version: '16.2'
-#           # This is the node version to use for the `cimg/node` tag
-#           # Relevant tags can be found on the CircleCI Developer Hub
-#           # https://circleci.com/developer/images/image/cimg/node
