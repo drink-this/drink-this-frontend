@@ -27,7 +27,7 @@ export default class SearchResults extends React.Component {
             return (
               <div className="justify-self-center" key={i} id={i}>
                 <img src={image} alt="" />
-                <a className="text-base mt-4 hover:underline cursor-pointer">Cocktail {i}</a>
+                <button className="text-base mt-4 hover:underline cursor-pointer" href="#">Cocktail {i}</button>
               </div>
             )
           })}

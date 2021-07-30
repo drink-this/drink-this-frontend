@@ -21,5 +21,5 @@ it("renders", () => {
   act(() => {
     render(<Onboard />, container);
   });
-  expect(container.textContent).toBe("This page is the onboard page");
+  expect(container.textContent).toEqual(expect.stringMatching(/To give you the best recommendations, please rate these cocktails/g));
 });
