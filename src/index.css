@@ -3,7 +3,19 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'PlayfairDisplay-Black';
+  font-family: 'PlayfairDisplay';
   src: url('./fonts/PlayfairDisplay-Black.ttf') format('truetype');
   font-weight: 900;
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('./fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('./fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
 }
