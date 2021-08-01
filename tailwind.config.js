@@ -3,9 +3,14 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'playfair': ['PlayfairDisplay']
+      'playfair': ['PlayfairDisplay'],
+      'montserrat': ['Montserrat']
     },
-    extend: {},
+    extend: {
+      backgroundImage: theme => ({
+        'hero-pattern': "url('images/zoomed-drink-this-landing.jpg')"
+      })
+    },
   },
   variants: {
     extend: {

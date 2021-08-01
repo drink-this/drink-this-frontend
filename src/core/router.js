@@ -1,4 +1,5 @@
 let axiosDefaults = require('axios/lib/defaults');
+const { REACT_APP_ROOT_URL } = process.env;
 
 export function getCSRF() {
   try {
@@ -18,7 +19,7 @@ class Router {
   constructor() {
     this._routes = new Map();
     try {
-      axiosDefaults.baseURL = 'https://';
+      axiosDefaults.baseURL = 'http://localhost:3000/';
     } catch(error) {
       // Do nothing
     }

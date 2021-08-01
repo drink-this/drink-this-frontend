@@ -9,3 +9,7 @@ import Router from '../core/router.js';
 Router.registerRoute(Constants.GET_EXAMPLE_MESSAGE, args => {
   return `/getExampleMessage/${args.id}`;
 });
+
+Router.registerRoute(Constants.CONFIRM_LOG_IN, args => {
+  return '/auth';
+});
