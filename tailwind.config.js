@@ -3,7 +3,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'playfair': ['PlayfairDisplay']
+      'playfair': ['PlayfairDisplay'],
+      'montserrat': ['Montserrat']
     },
     extend: {
       backgroundImage: theme => ({
