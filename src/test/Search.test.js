@@ -1,5 +1,5 @@
 import React from 'react';
-import Onboard from '../components/onboard.js';
+import Search from '../components/search.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
 
@@ -19,7 +19,7 @@ afterEach(() => {
 
 it("renders", () => {
   act(() => {
-    render(<Onboard />, container);
+    render(<Search />, container);
   });
-  expect(container.textContent).toEqual(expect.stringMatching(/To give you the best recommendations, please rate these cocktails/g));
+  expect(container.textContent).toBe("");
 });

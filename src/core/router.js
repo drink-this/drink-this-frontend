@@ -19,7 +19,7 @@ class Router {
   constructor() {
     this._routes = new Map();
     try {
-      axiosDefaults.baseURL = REACT_APP_ROOT_URL;
+      axiosDefaults.baseURL = 'http://localhost:3000/';
     } catch(error) {
       // Do nothing
     }
