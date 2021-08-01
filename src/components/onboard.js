@@ -12,7 +12,7 @@ export default class Onboard extends React.Component {
             <div className="text-center" key={i}>
               <img src={`${image}?${i}`} alt="Cocktail" />
               <p className="mt-4">Cocktail Name</p>
-              <Stars />
+              <Stars cname="stars flex mt-4 justify-center"/>
           </div>
           ))}
         </div>

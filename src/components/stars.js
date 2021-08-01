@@ -33,7 +33,7 @@ export default class Stars extends React.Component {
         onClick={this.handleClick}
         onMouseOut={() => this.hoverOver(null)}
         onMouseOver={this.hoverOver}
-        className="stars flex mt-4 justify-center">
+        className={this.props.cname}>
           {Array.from({length: 5 }, (v, i) => (
             <Star starId={i + 1} key={`star_${i + 1}`} marked={this.state.selection ? this.state.selection >= i + 1 : this.state.rating >= i + 1} />
           ))}
