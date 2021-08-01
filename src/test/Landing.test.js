@@ -21,5 +21,5 @@ it("renders", () => {
   act(() => {
     render(<Landing />, container);
   });
-  expect(container.textContent).toBe("This is the landing page");
+  expect(container.textContent).toBe("What should I drink tonight?Maybe it’s an old classic or maybe it’s something completely brand new. Tell us what you’re into and we’ll suggest something for you.Login with Google");
 });
