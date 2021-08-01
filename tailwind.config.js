@@ -5,7 +5,11 @@ module.exports = {
     fontFamily: {
       'playfair': ['PlayfairDisplay']
     },
-    extend: {},
+    extend: {
+      backgroundImage: theme => ({
+        'hero-pattern': "url('images/zoomed-drink-this-landing.jpg')"
+      })
+    },
   },
   variants: {
     extend: {
