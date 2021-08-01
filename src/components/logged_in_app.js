@@ -7,6 +7,7 @@ import React from 'react';
 import Header from './header.js';
 import Onboard from './onboard.js';
 import SearchResults from './search_results.js';
+import YelpSearch from './yelp_search.js';
 
 export default class LoggedInApp extends React.Component {
   render() {
@@ -15,6 +16,7 @@ export default class LoggedInApp extends React.Component {
         <Header />
         <Switch>
           <Route path="/search" component={SearchResults} />
+          <Route path="/search/yelp" component={YelpSearch} />
           <Route path="/onboard" component={Onboard} />
         </Switch>
       </Router>
