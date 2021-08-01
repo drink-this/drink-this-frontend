@@ -18,6 +18,7 @@ Actions.register(CONFIRM_LOG_IN, payload => {
     // console.log(response);
     // authStore.setIsUserNew(response.is_new);
     authStore.setIsUserNew(true); // set for now, remove later
+    window.location = "/onboard"
     Actions.finish(payload);
   // });
 });

@@ -3,14 +3,14 @@ import Stars from './stars.js'
 
 export default class Onboard extends React.Component {
   render() {
-    let image = 'https://via.placeholder.com/200'
+    let image = 'http://placekitten.com/200/200'
     return(
       <div className="font-playfair">
         <h1 className="text-center mb-12 text-3xl">To give you the best recommendations, please rate these cocktails</h1>
         <div className="flex justify-center space-x-8">
         {Array.from({length: 5 }, (v, i) => (
             <div className="text-center" key={i}>
-              <img src={image} alt="Cocktail" />
+              <img src={`${image}?${i}`} alt="Cocktail" />
               <p className="mt-4">Cocktail Name</p>
               <Stars />
           </div>
