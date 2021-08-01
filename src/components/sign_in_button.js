@@ -38,7 +38,7 @@ const SignInButton = () => {
   const _onFailure = (response) => {
     console.log(response);
   }
-  
+  console.log(process.env);
   return (
     <GoogleLogin
       clientId={"646257191612-9s120t0dlousuanlitc75hhc1snacpge.apps.googleusercontent.com"}
