@@ -3,24 +3,20 @@ import Stars from './stars.js'
 import authStore from '../stores/auth_store';
 import { useHistory } from "react-router-dom";
 
-const Onboard = () => {
-  const history = useHistory();
-  
-  if (!authStore.isAuthed()) {
-    history.replace('/');
-    return null;
-  }
-
-  let image = 'https://via.placeholder.com/200'
-  return(
-    <div className="font-playfair">
-      <h1 className="text-center mb-12 text-3xl">To give you the best recommendations, please rate these cocktails</h1>
-      <div className="flex justify-center space-x-8">
-      {Array.from({length: 5 }, (v, i) => (
-          <div className="text-center" key={i}>
-            <img src={image} alt="Cocktail" />
-            <p className="mt-4">Cocktail Name</p>
-            <Stars />
+export default class Onboard extends React.Component {
+  render() {
+    let image = 'http://placekitten.com/200/200'
+    return(
+      <div className="font-playfair">
+        <h1 className="text-center mb-12 text-3xl">To give you the best recommendations, please rate these cocktails</h1>
+        <div className="flex justify-center space-x-8">
+        {Array.from({length: 5 }, (v, i) => (
+            <div className="text-center" key={i}>
+              <img src={`${image}?${i}`} alt="Cocktail" />
+              <p className="mt-4">Cocktail Name</p>
+              <Stars cname="stars flex mt-4 justify-center"/>
+          </div>
+          ))}
         </div>
         ))}
       </div>
