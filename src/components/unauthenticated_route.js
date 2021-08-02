@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import authStore from '../stores/auth_store.js';
 
 export default class UnauthenticatedRoute extends React.Component {
@@ -8,8 +8,10 @@ export default class UnauthenticatedRoute extends React.Component {
   }
 
   render() {
-    if (this.isNotAuthenticated) {
+    if (this.isNotAuthenticated()) {
       return <Route path={this.props.path} component={this.props.component} />;
+    } else {
+      return <Redirect to={this.props.altPath} />;
     }
   }
 }

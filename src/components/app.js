@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Landing from './landing.js';
 import AuthenticatedRoute from "./authenticated_route";
+import UnauthenticatedRoute from './unauthenticated_route';
 import Onboard from './onboard.js';
 import SearchResults from './search_results.js';
 import YelpSearch from './yelp_search.js';
@@ -11,23 +12,23 @@ import { AFTER_LOGIN } from '../constants.js';
 
 export default class App extends React.Component {
 
-  _afterLogin = () => {
-    if (authStore.isUserNew()) {
-      window.location = '/onboard';
-    } else {
-      window.location = '/dashboard';
-    }
+  _navigateWhenAuthed = () => {
+    window.location = this._getPath();
   }
 
   componentDidMount() {
-    authStore.on(AFTER_LOGIN, this._afterLogin); 
+    authStore.on(AFTER_LOGIN, this._navigateWhenAuthed); 
   }
 
   render() {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={Landing} />
+          <UnauthenticatedRoute
+            path='/'
+            component={Landing}
+            altPath={'/dashboard'}
+          />
           <AuthenticatedRoute
             path="/onboard"
             component={Onboard}
