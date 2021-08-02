@@ -20,9 +20,19 @@ const data = {
   }
 }
 
-it("renders", async () => {
+it("renders for recommendation", async () => {
   render(<Cocktail cocktail={data} tagline={'You should have a...'} />)
   const text = screen.getByText(/You should have a.../)
+  expect(text).toBeInTheDocument()
+  const ingredients = screen.getByText(/Ingredients/)
+  expect(ingredients).toBeInTheDocument()
+  const directions = screen.getByText(/Directions/)
+  expect(directions).toBeInTheDocument()
+});
+
+it("renders for search details", async () => {
+  render(<Cocktail cocktail={data} tagline={'Have a...'} />)
+  const text = screen.getByText(/Have a.../)
   expect(text).toBeInTheDocument()
   const ingredients = screen.getByText(/Ingredients/)
   expect(ingredients).toBeInTheDocument()
