@@ -7,11 +7,10 @@ import Cookies from 'js-cookie';
 import { Callbacks } from "jquery";
 import axios from "axios";
 
-const validateTokenWithServer = (authToken, email) => {
+const validateTokenWithServer = (payload) => {
   return axios.get(`${SERVER_URL}/token_auth`, {
     params: {
-      auth_token: authToken,
-      email: email
+      auth_token: payload.authToken,
     }
   })
   .then(checkStatus)
@@ -44,7 +43,7 @@ const redirectToLoggedInApp= (auth) => {
 };
 
 Actions.register(CONFIRM_LOG_IN, payload => {
-  validateTokenWithServer(payload.authToken, payload.email)
+  validateTokenWithServer(payload)
     .then(setToken)
     .then(redirectToLoggedInApp)
     // passing in an anonymous method to ensure the action finishes 
