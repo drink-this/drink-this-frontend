@@ -1,7 +1,5 @@
 import React from 'react';
 import Stars from './stars.js'
-import authStore from '../stores/auth_store';
-import { useHistory } from "react-router-dom";
 
 export default class Onboard extends React.Component {
   render() {
@@ -18,15 +16,12 @@ export default class Onboard extends React.Component {
           </div>
           ))}
         </div>
-        ))}
+        <div className="flex justify-center">
+          <a href="/recommendation" 
+          className="flex justify-center uppercase border-2 border-black py-2 px-20 m-8 w-1/3 hover:text-white hover:bg-black transition"
+          >Find me a drink!</a>
+        </div>
       </div>
-      <div className="flex justify-center">
-        <a href="/recommendation" 
-        className="flex justify-center uppercase border-2 border-black py-2 px-20 m-8 w-1/3 hover:text-white hover:bg-black transition"
-        >Find me a drink!</a>
-      </div>
-    </div>
-  );
+    )
+  }
 }
-
-export default Onboard;
