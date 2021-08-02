@@ -15,6 +15,9 @@ class Actions {
   }
 
   finish(payload) {
+    if(!payload.emitOn) {
+      return;
+    }
     payload.emitOn.map(emitter => {
       var store = emitter.store;
       emitter.componentIds.map(id => {
