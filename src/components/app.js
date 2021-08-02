@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Landing from './landing.js';
 import AuthenticatedRoute from "./authenticated_route";
 import UnauthenticatedRoute from './unauthenticated_route';
@@ -13,9 +13,14 @@ import { AFTER_LOGIN } from '../constants.js';
 export default class App extends React.Component {
 
   _navigateWhenAuthed = () => {
-    window.location = this._getPath();
+    debugger;
+    if (authStore.isUserNew()) {
+      window.location = '/onboard';
+    } else {
+      window.location = '/dashboard';
+    }
   }
-
+  
   componentDidMount() {
     authStore.on(AFTER_LOGIN, this._navigateWhenAuthed); 
   }
@@ -27,7 +32,6 @@ export default class App extends React.Component {
           <UnauthenticatedRoute
             path='/'
             component={Landing}
-            altPath={'/dashboard'}
           />
           <AuthenticatedRoute
             path="/onboard"

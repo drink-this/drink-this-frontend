@@ -8,10 +8,6 @@ export default class UnauthenticatedRoute extends React.Component {
   }
 
   render() {
-    if (this.isNotAuthenticated()) {
-      return <Route path={this.props.path} component={this.props.component} />;
-    } else {
-      return <Redirect to={this.props.altPath} />;
-    }
+    return <Route exact path={this.props.path} component={this.props.component} />;
   }
 }

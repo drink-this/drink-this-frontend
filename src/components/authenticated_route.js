@@ -13,7 +13,7 @@ export default class AuthenticatedRoute extends React.Component {
       return (
         <div>
           <Header />
-          <Route path={this.props.path} component={this.props.component} />
+          <Route exact path={this.props.path} component={this.props.component} />
         </div>
         );
     } else {
