@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom';
 import Landing from './landing.js';
 import AuthenticatedRoute from "./authenticated_route";
 import UnauthenticatedRoute from './unauthenticated_route';
@@ -11,27 +11,46 @@ import authStore from '../stores/auth_store.js';
 import { AFTER_LOGIN } from '../constants.js';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirect: null
+    };
+  }
 
-  _navigateWhenAuthed = () => {
-    debugger;
-    if (authStore.isUserNew()) {
-      window.location = '/onboard';
+  _afterLogin = () => {
+    if (authStore.isUserNew() === 'true') {
+      this.setState({
+        redirect: '/onboard'
+      });
     } else {
-      window.location = '/dashboard';
+      this.setState({
+        redirect: '/dashboard'
+      });
+    }
+  }
+
+  _renderRedirect = () => {
+    if (this.state.redirect !== null) {
+      let url = this.state.redirect;
+      this.state = { redirect: null };
+      return <Redirect to={url} />;
+    } else {
+      return '';
     }
   }
   
   componentDidMount() {
-    authStore.on(AFTER_LOGIN, this._navigateWhenAuthed); 
+    authStore.on(AFTER_LOGIN, this._afterLogin); 
   }
 
   render() {
     return (
       <Router>
         <Switch>
-          <UnauthenticatedRoute
-            path='/'
-            component={Landing}
+          <AuthenticatedRoute
+            path='/dashboard'
+            component={() => {return <div>Dashboard</div>}}
           />
           <AuthenticatedRoute
             path="/onboard"
@@ -40,18 +59,23 @@ export default class App extends React.Component {
           <AuthenticatedRoute
             path="/search/yelp"
             component={YelpSearch}
-          />
+            />
           <AuthenticatedRoute
             path="/search"
             component={SearchResults}
-          />
+            />
           <AuthenticatedRoute
             path="/recommendation"
             component={ShowPage}
-          />
+            />
           <AuthenticatedRoute
             path="/cocktails/:id"
             component={ShowPage}
+            />
+          {this._renderRedirect()}
+          <UnauthenticatedRoute
+            path='/'
+            component={Landing}
           />
         </Switch>
       </Router>

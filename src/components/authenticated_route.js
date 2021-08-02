@@ -9,13 +9,13 @@ export default class AuthenticatedRoute extends React.Component {
   }
 
   render() {
-    if (this.isAuthenticated()) {
+    if (authStore.isAuthed()) {
       return (
         <div>
           <Header />
-          <Route exact path={this.props.path} component={this.props.component} />
+          <Route path={this.props.path} component={this.props.component} />
         </div>
-        );
+      );
     } else {
       return <Redirect to={'/'} />;
     }

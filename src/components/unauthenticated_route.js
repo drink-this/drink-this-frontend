@@ -8,6 +8,6 @@ export default class UnauthenticatedRoute extends React.Component {
   }
 
   render() {
-    return <Route exact path={this.props.path} component={this.props.component} />;
+    return <Route path={this.props.path} component={this.props.component} />;
   }
 }
