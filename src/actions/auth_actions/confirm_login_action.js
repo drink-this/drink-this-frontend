@@ -7,30 +7,44 @@ import Cookies from 'js-cookie';
 import { Callbacks } from "jquery";
 import axios from "axios";
 
-Actions.register(CONFIRM_LOG_IN, payload => {
-  Cookies.set('authToken', payload.authToken, { expires: 1 });
-  axios.get('/authorization', {
+const validateTokenWithServer = (authToken, email) => {
+  axios.get(`${SERVER_URL}/token_auth`, {
     params: {
-      auth_token: payload.authToken,
-      email: payload.email
+      auth_token: authToken,
+      email: email
     }
   })
   .then(checkStatus)
   .then(response => {
-  console.log(response);
-  // Axios(Router.request('GET', CONFIRM_LOG_IN, {
-  //   params: {
-  //     auth_token: payload.authToken,
-  //     email: payload.email
-  //   }
-  // }))
-  // .then(checkStatus)
-  // .then(response => {
-    // console.log(response);
-    // authStore.setIsUserNew(response.is_new);
-    authStore.setIsUserNew(true); // set for now, remove later
-    window.location = "/onboard"
-    Actions.finish(payload);
+    return {
+      token: response.token,
+      isNew: response.is_new,
+    };
   });
-});
+};
 
+const setToken  = (auth) => {
+  Cookies.set('authToken', auth.token);
+  return auth;
+};
+
+const redirectToLoggedInApp= (auth) => {
+  // this should not happen
+  if(!auth.token) {
+    alert('There was an issue logging you in. Please try again.');
+    return ;
+  }
+  if(auth.isNew) {
+    window.location = '/onboard';
+  } else {
+    window.location = '/dashboard';
+  }
+};
+
+Actions.register(CONFIRM_LOG_IN, payload => {
+  validateTokenWithServer(authToken, email)
+    .then(setToken)
+    .then(redirectToLoggedInApp)
+    // passing in an anonymous method to ensure the action finishes 
+    .always(() => Actions.finish(payload)) ;
+})
