@@ -1,6 +1,5 @@
 import React from 'react';
 const queryString = require('query-string');
-const _ = require('lodash');
 
 export default class SearchResults extends React.Component {
   constructor(props) {
@@ -17,13 +16,12 @@ export default class SearchResults extends React.Component {
   // componentDidMount() {}
 
   render() {
-    const array = _.range(20)
     let image = 'https://via.placeholder.com/200'
     return(
       <div className="font-playfair font-normal text-3xl text-center mx-56">
         <h2 className="mb-16">Search results for {this.state.query}</h2>
         <div className="grid grid-cols-5 gap-4 justify-items-stretch">
-          {array.map((i) => {
+          {Array.from({length: 20}, (v, i) => {
             return (
               <div className="justify-self-center" key={i} id={i}>
                 <img src={image} alt="" />
