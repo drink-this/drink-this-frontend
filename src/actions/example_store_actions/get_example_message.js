@@ -1,7 +1,7 @@
 import Actions from '../../core/app_actions.js';
-import Axios from 'axios';
-import ExampleStore from '../../stores/example_store.js';
-import Router, { checkStatus, handleError } from '../../core/router.js';
+// import Axios from 'axios';
+// import ExampleStore from '../../stores/example_store.js';
+// import Router, { checkStatus, handleError } from '../../core/router.js';
 
 import { GET_EXAMPLE_MESSAGE } from '../../constants.js';
 

@@ -2,10 +2,6 @@ import React from 'react';
 import SignInButton from './sign_in_button';
 
 export default class AuthPanel extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render () {
     return (
       <div className='grid grid-cols-1 gap-2 place-items-center'>

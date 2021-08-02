@@ -9,7 +9,7 @@ class Actions {
     let action = this._actions.get(payload.action);
     if (action instanceof Function) {
       action(payload);
-    } else if (action == undefined || action == null || !(action instanceof Function)) {
+    } else if (action === undefined || action == null || !(action instanceof Function)) {
       throw new Error(`Action '${payload.action}' is not registered`);
     }
   }
@@ -20,9 +20,9 @@ class Actions {
     }
     payload.emitOn.map(emitter => {
       var store = emitter.store;
-      emitter.componentIds.map(id => {
+      emitter.ids.map(id => {
         store.emit(id);
-      })
+      });
     });
   }
 }
