@@ -1,7 +1,16 @@
+import React from "react";
 import Logo from "./logo.js";
 import Search from "./search.js";
+import { useHistory } from "react-router";
+import authStore from "../stores/auth_store.js";
 
 const Header = () => {
+  const history = useHistory();
+
+  if (!authStore.isAuthed()) {
+    return null;
+  }
+
   return(
     <div className="flex items-center justify-between mb-10">
       <Logo />
@@ -11,9 +20,8 @@ const Header = () => {
         </div>
         <p className="font-playfair font-bold hover:underline mx-16">Log Out</p>
       </div>
-      
     </div>
-  )
+  );
 }
 
 export default Header;

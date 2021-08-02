@@ -21,6 +21,7 @@ const SignInButton = () => {
   authStore.on(LOGIN_BUTTON_ID, _finishLogin);
 
   const _onLoginSuccess = (response) => {
+    console.log(response);
     let authToken = response.tokenObj.id_token;
     let email = response.profileObj.email;
 

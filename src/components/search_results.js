@@ -14,7 +14,9 @@ export default class SearchResults extends React.Component {
     return parsed.q;
   }
 
-  // componentDidMount() {}
+  componentDidMount() {
+    
+  }
 
   render() {
     const array = _.range(20)
