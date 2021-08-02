@@ -8,17 +8,6 @@ import { CONFIRM_LOG_IN, LOGIN_BUTTON_ID } from '../constants';
 const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 const SignInButton = () => {
-  let history = useHistory();
-
-  const _finishLogin = () => {
-    if (authStore.isUserNew()) {
-      history.push("/onboard");
-    } else { 
-      // Go somewhere else
-    }
-  }
-
-  authStore.on(LOGIN_BUTTON_ID, _finishLogin);
 
   const _onLoginSuccess = (response) => {
     console.log(response);
@@ -29,10 +18,6 @@ const SignInButton = () => {
       action: CONFIRM_LOG_IN,
       authToken: authToken,
       email: email,
-      emitOn: [{
-        store: authStore,
-        componentIds: [LOGIN_BUTTON_ID]
-      }]
     });
   }
 
