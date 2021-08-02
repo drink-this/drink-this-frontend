@@ -15,8 +15,8 @@ export default class LoggedInApp extends React.Component {
       <Router>
         <Header />
         <Switch>
-          <Route path="/search" component={SearchResults} />
           <Route path="/search/yelp" component={YelpSearch} />
+          <Route path="/search" component={SearchResults} />
           <Route path="/onboard" component={Onboard} />
         </Switch>
       </Router>
