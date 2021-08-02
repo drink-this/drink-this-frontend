@@ -30,7 +30,7 @@ class Router {
     this._routes.set(name, route);
   }
 
-  route(name, args) {
+  route(name, args = {}) {
     return `${axiosDefaults.baseURL}${this.partialRoute(name, args)}`;
   }
 

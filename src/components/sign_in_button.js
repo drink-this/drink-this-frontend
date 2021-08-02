@@ -9,8 +9,7 @@ import authStore from '../stores/auth_store';
 const SignInButton = () => {
 
   const _onLoginSuccess = (response) => {
-    console.log(response);
-    let authToken = response.tokenObj.id_token;
+    let authToken = response.tokenId;
 
     AppDispatcher.dispatch({
       action: CONFIRM_LOG_IN,
