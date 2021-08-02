@@ -38,7 +38,7 @@ describe('Route is set and returns the expected URL', () => {
         'Content-Type': 'application/json',
         'X-CSRF-TOKEN': null
       },
-      data: {}
+      params: {}
     };
 
     let theRequest = Router.request('post', routeName, {
@@ -59,7 +59,7 @@ describe('Route is set and returns the expected URL', () => {
       method: 'post',
       url: testRoute,
       headers: customHeaders,
-      data: {
+      params: {
         name: 'test'
       }
     };

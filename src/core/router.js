@@ -61,7 +61,7 @@ class Router {
       method: type,
       url: this.partialRoute(routeName, requestData.path_args),
       headers: headers,
-      data: requestData.params
+      params: requestData.params
     }
   }
 }
