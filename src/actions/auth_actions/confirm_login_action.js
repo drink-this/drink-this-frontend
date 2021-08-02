@@ -1,14 +1,14 @@
 import Actions from "../../core/app_actions";
 import Axios from 'axios';
 import Router, { checkStatus, handleError } from '../../core/router.js';
-import { CONFIRM_LOG_IN } from '../../constants.js';
+import { CONFIRM_LOG_IN, SERVER_URL } from '../../constants.js';
 import authStore from "../../stores/auth_store";
 import Cookies from 'js-cookie';
 import { Callbacks } from "jquery";
 import axios from "axios";
 
 const validateTokenWithServer = (authToken, email) => {
-  axios.get(`${SERVER_URL}/token_auth`, {
+  return axios.get(`${SERVER_URL}/token_auth`, {
     params: {
       auth_token: authToken,
       email: email
@@ -17,14 +17,16 @@ const validateTokenWithServer = (authToken, email) => {
   .then(checkStatus)
   .then(response => {
     return {
-      token: response.token,
-      isNew: response.is_new,
+      token: response.data.token,
+      isNew: response.data.is_new,
     };
   });
 };
 
 const setToken  = (auth) => {
-  Cookies.set('authToken', auth.token);
+  if(auth.token) {
+    Cookies.set('authToken', auth.token);
+  }
   return auth;
 };
 
@@ -42,9 +44,9 @@ const redirectToLoggedInApp= (auth) => {
 };
 
 Actions.register(CONFIRM_LOG_IN, payload => {
-  validateTokenWithServer(authToken, email)
+  validateTokenWithServer(payload.authToken, payload.email)
     .then(setToken)
     .then(redirectToLoggedInApp)
     // passing in an anonymous method to ensure the action finishes 
-    .always(() => Actions.finish(payload)) ;
+    .finally(() => Actions.finish(payload)) ;
 })
