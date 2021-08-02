@@ -9,7 +9,9 @@ export default class ShowPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {cocktail: {}, isLoaded: false, tagline: ''}
-    this.id = this.props.match.params.id;
+    if (this.props.match) {
+      this.id = this.props.match.params.id;
+    }
   }
 
   componentDidMount() {
