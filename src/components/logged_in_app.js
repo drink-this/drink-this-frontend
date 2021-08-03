@@ -9,6 +9,7 @@ import Onboard from './onboard.js';
 import SearchResults from './search_results.js';
 import YelpSearch from './yelp_search.js';
 import ShowPage from './show_page.js';
+import About from './about.js';
 
 export default class LoggedInApp extends React.Component {
   render() {
@@ -21,6 +22,7 @@ export default class LoggedInApp extends React.Component {
           <Route path="/onboard" component={Onboard} />
           <Route path="/recommendation" component={ShowPage} />
           <Route path="/cocktails/:id" component={ShowPage} />
+          <Route path="/about" component={About} />
         </Switch>
       </Router>
     );
