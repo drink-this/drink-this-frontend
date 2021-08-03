@@ -1,3 +1,4 @@
+import React from "react";
 import Logo from "./logo.js";
 import Search from "./search.js";
 
@@ -11,9 +12,8 @@ const Header = () => {
         </div>
         <p className="font-playfair font-bold hover:underline mx-16">Log Out</p>
       </div>
-      
     </div>
-  )
+  );
 }
 
 export default Header;

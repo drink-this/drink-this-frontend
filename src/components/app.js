@@ -1,12 +1,84 @@
-import Cookies from 'js-cookie';
 import React from 'react';
-import LoggedInApp from './logged_in_app';
-import LoggedOutApp from './logged_out_app';
+import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom';
+import Landing from './landing.js';
+import AuthenticatedRoute from "./authenticated_route";
+import UnauthenticatedRoute from './unauthenticated_route';
+import Onboard from './onboard.js';
+import SearchResults from './search_results.js';
+import YelpSearch from './yelp_search.js';
+import ShowPage from './show_page.js';
+import authStore from '../stores/auth_store.js';
+import { AFTER_LOGIN } from '../constants.js';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirect: null
+    };
+  }
+
+  _afterLogin = () => {
+    if (authStore.isUserNew() === 'true') {
+      this.setState({
+        redirect: '/onboard'
+      });
+    } else {
+      this.setState({
+        redirect: '/dashboard'
+      });
+    }
+  }
+
+  _renderRedirect = () => {
+    if (this.state.redirect !== null) {
+      let url = this.state.redirect;
+      this.state = { redirect: null };
+      return <Redirect to={url} />;
+    } else {
+      return '';
+    }
+  }
+  
+  componentDidMount() {
+    authStore.on(AFTER_LOGIN, this._afterLogin); 
+  }
+
   render() {
-    // if Cookies.get then LoggedInApp else LoggedOutApp
-    return Cookies.get('authToken') ? <LoggedInApp /> : <LoggedOutApp />;
+    return (
+      <Router>
+        <Switch>
+          <AuthenticatedRoute
+            path='/dashboard'
+            component={() => {return <div>Dashboard</div>}}
+          />
+          <AuthenticatedRoute
+            path="/onboard"
+            component={Onboard}
+          />
+          <AuthenticatedRoute
+            path="/search/yelp"
+            component={YelpSearch}
+            />
+          <AuthenticatedRoute
+            path="/search"
+            component={SearchResults}
+            />
+          <AuthenticatedRoute
+            path="/recommendation"
+            component={ShowPage}
+            />
+          <AuthenticatedRoute
+            path="/cocktails/:id"
+            component={ShowPage}
+            />
+          {this._renderRedirect()}
+          <UnauthenticatedRoute
+            path='/'
+            component={Landing}
+          />
+        </Switch>
+      </Router>
+    );
   }
 }
-

@@ -1,17 +1,21 @@
 import { EventEmitter } from "events";
+import Cookies from "js-cookie";
 
 class AuthStore extends EventEmitter {
-  constructor() {
-    super();
-    this._isUserNew = false;
+  isAuthed = () => {
+    return Cookies.get('authToken') !== undefined
   }
 
   isUserNew = () => {
-    return this._isUserNew;
+    return Cookies.get('type');
+  }
+
+  setAuthed = (token) => {
+    Cookies.set('authToken', token, { expires: 1 });
   }
 
   setIsUserNew = (isNew) => {
-    this._isUserNew = isNew;
+    Cookies.set('type', isNew, { expires: 1 });
   }
 }
 const authStore = new AuthStore();

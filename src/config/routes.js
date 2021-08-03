@@ -6,10 +6,6 @@ import Router from '../core/router.js';
  * used for future reference.
  */
 
-Router.registerRoute(Constants.GET_EXAMPLE_MESSAGE, args => {
-  return `/getExampleMessage/${args.id}`;
-});
-
 Router.registerRoute(Constants.CONFIRM_LOG_IN, args => {
-  return '/auth';
+  return `/token_auth`;
 });

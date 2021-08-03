@@ -13,7 +13,9 @@ export default class SearchResults extends React.Component {
     return parsed.q;
   }
 
-  // componentDidMount() {}
+  componentDidMount() {
+    
+  }
 
   render() {
     let image = 'https://via.placeholder.com/200'

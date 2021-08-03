@@ -52,7 +52,7 @@ test('Tests the full lifecycle of an Action', () => {
     foo: 'bar',
     emitOn: [{
       store: TestStore,
-      componentIds: ['Test-Id']
+      ids: ['Test-Id']
     }]
   };
 
@@ -76,7 +76,7 @@ test('AppActions.finish emits on the given store', () => {
     action: ACTION,
     emitOn: [{
       store: TestStore, // The store to emit on
-      componentIds: ['Test-Id', 'Another-Id']
+      ids: ['Test-Id', 'Another-Id']
     }]
   };
 
