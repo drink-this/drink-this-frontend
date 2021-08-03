@@ -1,36 +1,22 @@
 import React from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { useHistory } from "react-router-dom";
+import { GoogleLogin } from 'react-google-login';
 import AppDispatcher from '../core/dispatcher';
-import authStore from '../stores/auth_store';
 
-import { CONFIRM_LOG_IN, LOGIN_BUTTON_ID } from '../constants';
-const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
+import { CONFIRM_LOG_IN, AFTER_LOGIN } from '../constants';
+import authStore from '../stores/auth_store';
+// const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 const SignInButton = () => {
-  let history = useHistory();
-
-  const _finishLogin = () => {
-    if (authStore.isUserNew()) {
-      history.push("/onboard");
-    } else { 
-      // Go somewhere else
-    }
-  }
-
-  authStore.on(LOGIN_BUTTON_ID, _finishLogin);
 
   const _onLoginSuccess = (response) => {
-    let authToken = response.tokenObj.id_token;
-    let email = response.profileObj.email;
+    let authToken = response.tokenId;
 
     AppDispatcher.dispatch({
       action: CONFIRM_LOG_IN,
       authToken: authToken,
-      email: email,
       emitOn: [{
         store: authStore,
-        componentIds: [LOGIN_BUTTON_ID]
+        ids: [AFTER_LOGIN]
       }]
     });
   }
@@ -38,7 +24,7 @@ const SignInButton = () => {
   const _onFailure = (response) => {
     console.log(response);
   }
-  
+
   return (
     <GoogleLogin
       clientId={"646257191612-9s120t0dlousuanlitc75hhc1snacpge.apps.googleusercontent.com"}
@@ -50,4 +36,5 @@ const SignInButton = () => {
     />
   );
 }
+
 export default SignInButton;
