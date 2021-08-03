@@ -6,6 +6,11 @@ export default class Cocktail extends React.Component {
 
   constructor(props) {
     super(props);
+    // navigator.geolocation.getCurrentPosition((data) => {
+    //   let {latitude, longitude} = data.coords
+    //   console.log(latitude, longitude);
+    //   console.log(data);
+    // }, err => console.log(err))
     this.state = {
       isLoaded: false,
       cocktail: this.props.cocktail
@@ -14,7 +19,7 @@ export default class Cocktail extends React.Component {
 
 
   render() {
-    let { cocktail: {id, attributes}, isLoaded } = this.state
+    let { cocktail: {id, attributes}} = this.state
     let { name, recipe, instructions, thumbnail, rating } = attributes
     instructions = instructions.split(/(?<=\.)/)
     return (
@@ -45,6 +50,8 @@ export default class Cocktail extends React.Component {
               </ol>
             </div>
           </div>
+          <button className="flex flex-col font-montserrat font-semibold border-2 border-black px-8 py-2 text-xl mt-10">Find near you <span className="text-xs italic">Powered by Yelp</span></button>
+          <input className="border-b-2 border-black" type="text" placeholder="zipcope" />
         </div>
         <div className="flex justify-around">
   
