@@ -13,6 +13,13 @@ export default class YelpSearch extends React.Component {
     return parsed.q;
   }
 
+  componentDidMount() {
+    let url = `${process.env.REACT_APP_SERVER_URL}/api/v1/yelp_search`
+    axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get('authToken'), location: 'f', cocktail_name: 'name'}}).then((res) => {
+      this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'Have a...'})
+    }).catch(err => console.log(err))
+  }
+
   // componentDidMount() {}
 
   render() {

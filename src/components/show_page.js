@@ -27,7 +27,7 @@ export default class ShowPage extends React.Component {
         this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'You should have a...'})
       }).catch(err => console.log(err))
     }
-    
+
   }
 
   componentWillUnmount() {
