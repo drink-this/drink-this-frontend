@@ -9,7 +9,8 @@ export default class SearchResults extends React.Component {
     super(props);
     this.state = {
       query: this.parseParams(props),
-      cocktails: []
+      cocktails: [],
+      isLoaded: false
     }
   }
 
@@ -22,7 +23,7 @@ export default class SearchResults extends React.Component {
   componentDidMount() {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/cocktails/search`, {cancelToken: this.source.token, params:{search: this.state.query, auth_token: Cookies.get('authToken')}})
       .then((res) => {
-        this.setState({cocktails: res.data.data})
+        this.setState({cocktails: res.data.data, isLoaded: true})
       })
       .catch((err) => {
         this.source.cancel('unmounting')
@@ -34,7 +35,8 @@ export default class SearchResults extends React.Component {
   }
 
   render() {
-    if (this.state.cocktails.length == 0) {
+    console.log(this.state.cocktails.length);
+    if (this.state.cocktails.length != 0 && this.state.isLoaded == true) {
     let cocktails = this.state.cocktails
       return(
         <div className="font-playfair font-normal text-3xl text-center mx-56">
@@ -53,6 +55,8 @@ export default class SearchResults extends React.Component {
           </div>
         </div>
       )
+    } else if (this.state.cocktails.length == 0 && this.state.isLoaded == false) {
+      return <h1 className="font-playfair font-normal text-3xl text-center mx-56">Loading...</h1>
     } else {
       return <h1 className="font-playfair font-normal text-3xl text-center mx-56">Sorry no results for <span className="italic">'{this.state.query}'</span></h1>
     }
