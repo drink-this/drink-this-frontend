@@ -29,7 +29,6 @@ afterEach(() => {
 
 it("renders", () => {
   renderWithRouter(YelpSearch);
-  const text = screen.getByText(/Search results for/);
   expect(text).toBeInTheDocument();
   const query = screen.getByText(/'drink'/);
   expect(query).toBeInTheDocument();
