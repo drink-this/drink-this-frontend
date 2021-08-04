@@ -27,7 +27,7 @@ export default class Onboard extends React.Component {
     ]
     return(
       <div className="font-playfair">
-        <h1 className="text-center mb-12 text-3xl">To give you the best recommendations, please rate these cocktails</h1>
+        <h1 className="text-center mb-12 text-3xl">Let us know what you love (or hate!) by rating these cocktails</h1>
         <div className="flex justify-center space-x-8">
         {data.map((cocktail) => {
           return (
