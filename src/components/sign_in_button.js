@@ -6,7 +6,6 @@ import { CONFIRM_LOG_IN, AFTER_LOGIN } from '../constants';
 import authStore from '../stores/auth_store';
 
 const SignInButton = () => {
-
   const _onLoginSuccess = (response) => {
     let authToken = response.tokenId;
 
