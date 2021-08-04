@@ -12,7 +12,7 @@ Actions.register(CONFIRM_LOG_IN, payload => {
   })
   .then(checkStatus)
   .then(response => {
-    authStore.setAuthed(response.data.authToken);
+    authStore.setAuthed(response.data.token);
     authStore.setIsUserNew(response.data.is_new);
     Actions.finish(payload)
   }).catch(handleError);

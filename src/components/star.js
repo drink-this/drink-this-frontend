@@ -8,9 +8,9 @@ export default class Star extends React.Component {
 
   render() {
     if (this.props.marked) {
-      return <img data-star-id={this.props.starId} src="star_marked.png" alt="marked star" />
+      return <img data-star-id={this.props.starId} src="/star_marked.png" alt="marked star" />
     } else {
-      return <img data-star-id={this.props.starId} src="star_not_marked.png" alt="empty star" />
+      return <img data-star-id={this.props.starId} src="/star_not_marked.png" alt="empty star" />
     }
   }
 }
