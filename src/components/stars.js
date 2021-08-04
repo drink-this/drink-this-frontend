@@ -12,14 +12,6 @@ export default class Stars extends React.Component {
     }
   }
 
-  getReccs = () => {
-    // axios('http://localhost:8080/')
-  }
-
-  onStarClick = (index, name, e) => {
-    console.log(index,name);
-  }
-
   hoverOver = (e) => {
     let val = 0
     if (e && e.target && e.target.getAttribute('data-star-id')) {
