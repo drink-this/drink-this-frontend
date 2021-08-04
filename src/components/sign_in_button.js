@@ -4,7 +4,6 @@ import AppDispatcher from '../core/dispatcher';
 
 import { CONFIRM_LOG_IN, AFTER_LOGIN } from '../constants';
 import authStore from '../stores/auth_store';
-// const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 const SignInButton = () => {
 
@@ -27,7 +26,7 @@ const SignInButton = () => {
 
   return (
     <GoogleLogin
-      clientId={"646257191612-9s120t0dlousuanlitc75hhc1snacpge.apps.googleusercontent.com"}
+      clientId={process.env.REACT_APP_CLIENT_ID}
       buttonText={"Login with Google"}
       onSuccess={_onLoginSuccess}
       onFailure={_onFailure}

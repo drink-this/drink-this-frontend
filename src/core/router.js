@@ -20,7 +20,7 @@ class Router {
   constructor() {
     this._routes = new Map();
     try {
-      axiosDefaults.baseURL = SERVER_URL;
+      axiosDefaults.baseURL = process.env.REACT_APP_SERVER_URL;
     } catch(error) {
       // Do nothing
     }
