@@ -3,18 +3,41 @@ import Stars from './stars.js'
 
 export default class Onboard extends React.Component {
   render() {
-    let image = 'http://placekitten.com/200/200'
+    let data = [
+      {
+        "name": "Cocktail 1",
+        "image": 'http://via.placeholder.com/200/100'
+      },
+      {
+        "name": "Cocktail 2",
+        "image": 'http://via.placeholder.com/200/200'
+      },
+      {
+        "name": "Cocktail 3",
+        "image": 'http://via.placeholder.com/200/300'
+      },
+      {
+        "name": "Cocktail 4",
+        "image": 'http://via.placeholder.com/200/400'
+      },
+      {
+        "name": "Cocktail 5",
+        "image": 'http://via.placeholder.com/200/500'
+      },
+    ]
     return(
       <div className="font-playfair">
         <h1 className="text-center mb-12 text-3xl">To give you the best recommendations, please rate these cocktails</h1>
         <div className="flex justify-center space-x-8">
-        {Array.from({length: 5 }, (v, i) => (
-            <div className="text-center" key={i}>
-              <img src={`${image}?${i}`} alt="Cocktail" />
+        {data.map((cocktail) => {
+          return (
+            <div className="text-center" key={cocktail.name}>
+              <img src={cocktail.image} alt="Cocktail" />
               <p className="mt-4">Cocktail Name</p>
-              <Stars cname="stars flex mt-4 justify-center"/>
-          </div>
-          ))}
+              <Stars cname="stars flex mt-4 justify-center" name={cocktail.name}/>
+            </div>
+          )
+        })}
         </div>
         <div className="flex justify-center">
           <a href="/recommendation" 
@@ -25,3 +48,4 @@ export default class Onboard extends React.Component {
     )
   }
 }
+

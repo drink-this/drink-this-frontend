@@ -5,7 +5,7 @@ import WhiteLogo from './white_logo';
 export default class Landing extends React.Component {
   render() {
     return (
-      <div className='bg-hero-pattern bg-cover w-screen h-screen'>
+      <div className='bg-hero-pattern bg-cover h-screen'>
         <div className="flex">
           <WhiteLogo />
         </div>
