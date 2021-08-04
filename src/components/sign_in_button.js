@@ -4,7 +4,6 @@ import AppDispatcher from '../core/dispatcher';
 
 import { CONFIRM_LOG_IN, AFTER_LOGIN } from '../constants';
 import authStore from '../stores/auth_store';
-// const { REACT_APP_GOOGLE_CLIENT_ID } = process.env;
 
 const SignInButton = () => {
 
