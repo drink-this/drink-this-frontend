@@ -34,5 +34,5 @@ it("renders", () => {
 
 it("grabs query param from url", () => {
   renderWithRouter(SearchResults)
-  expect(container.textContent).toEqual(expect.stringMatching(/Search results for drink/g));
+  expect(container.textContent).toEqual(expect.stringMatching(/Search results for 'drink'/g));
 })
