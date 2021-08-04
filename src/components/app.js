@@ -9,6 +9,7 @@ import YelpSearch from './yelp_search.js';
 import ShowPage from './show_page.js';
 import authStore from '../stores/auth_store.js';
 import { AFTER_LOGIN } from '../constants.js';
+import Dashboard from './dashboard.js';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ export default class App extends React.Component {
         <Switch>
           <AuthenticatedRoute
             path='/dashboard'
-            component={() => {return <div>Dashboard</div>}}
+            component={Dashboard}
           />
           <AuthenticatedRoute
             path="/onboard"
