@@ -1,20 +1,28 @@
 import React from 'react';
 import Stars from './stars.js'
 import SocialLinks from './social_links.js'
+import { createBrowserHistory } from 'history';
+import { Link } from 'react-router-dom'
 
 export default class Cocktail extends React.Component {
 
   constructor(props) {
     super(props);
+    this.history = createBrowserHistory();
+    this.loc = React.createRef()
     this.state = {
       isLoaded: false,
-      cocktail: this.props.cocktail
+      cocktail: this.props.cocktail,
+      loc: ''
     }
   }
 
+  updateQ = (e) => {
+    this.setState({loc: this.loc.current.value})
+  }
 
   render() {
-    let { cocktail: {id, attributes}, isLoaded } = this.state
+    let { cocktail: {id, attributes}} = this.state
     let { name, recipe, instructions, thumbnail, rating } = attributes
     instructions = instructions.split(/(?<=\.)/)
     return (
@@ -41,10 +49,16 @@ export default class Cocktail extends React.Component {
                 {instructions.map((step, i) => {
                   return <li key={i}>{step}</li>
                 })}
-  
               </ol>
             </div>
           </div>
+          <input onChange={this.updateQ} className="mt-10 mb-2 border-b-2 border-black" type="text" placeholder="City / State" ref={this.loc}/>
+          <a 
+            href={`/search/yelp?q=${name}&loc=${this.state.loc}`}
+            className="flex flex-col w-60 font-montserrat font-semibold border-2 border-black px-8 py-2 text-xl "
+          >
+            Find near you <span className="text-xs italic">Powered by Yelp</span>
+          </a>
         </div>
         <div className="flex justify-around">
   
