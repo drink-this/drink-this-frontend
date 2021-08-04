@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import Star from './star.js'
 
@@ -6,8 +7,13 @@ export default class Stars extends React.Component {
     super(props)
     this.state = {
       rating: parseInt(this.props.value),
+      name: this.props.name,
       selection: 0
     }
+  }
+
+  getReccs = () => {
+    // axios('http://localhost:8080/')
   }
 
   onStarClick = (index, name, e) => {
@@ -25,6 +31,19 @@ export default class Stars extends React.Component {
   handleClick = (e) => {
     let val = e.target.getAttribute('data-star-id') || this.state.rating
     this.setState({rating: val})
+    if (val != null && !isNaN(val)) {
+      let data = {
+        user_id: 1,
+        stars: val,
+        cocktail_id: 11007
+      }
+      // do api call here
+      axios.post('http://localhost:8080/api/v1/cocktails/1/rating', data).then(res => {
+        console.log(res)
+      })
+      console.log(data);
+    }
+    
   }
 
   render() {
