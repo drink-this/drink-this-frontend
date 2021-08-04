@@ -5,9 +5,11 @@ import WhiteLogo from './white_logo';
 export default class Landing extends React.Component {
   render() {
     return (
-      <div className='bg-hero-pattern bg-cover'>
-        <WhiteLogo />
-        <div className='grid grid-cols-11 w-screen h-screen place-items-center'>
+      <div className='bg-hero-pattern bg-cover h-screen'>
+        <div className="flex">
+          <WhiteLogo />
+        </div>
+        <div className='grid grid-cols-11  place-items-center'>
           <div className='col-span-7 '></div>
           <div className='col-span-4'>
            <AuthPanel/>
