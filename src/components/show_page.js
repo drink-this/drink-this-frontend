@@ -36,7 +36,7 @@ export default class ShowPage extends React.Component {
   
   render () {
       if (!this.state.isLoaded) {
-        return <div>Loading...</div>
+        return <div className="font-playfair font-normal text-3xl text-center mx-56">Loading...</div>
       } else {
         return <Cocktail cocktail={this.state.cocktail} tagline={ this.state.tagline }/>
       }
