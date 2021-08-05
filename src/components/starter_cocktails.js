@@ -50,7 +50,7 @@ export default class StarterCocktails extends React.Component {
       <div>
         <div className="flex justify-center space-x-8">
           {data.map((cocktail,index) => {
-            if (cocktail.rating > 0) {
+            if (cocktail.attributes.rating > 0) {
               clicked.push(index)
             } else {
               clicked.filter(i => i == index)
