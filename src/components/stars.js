@@ -29,9 +29,7 @@ export default class Stars extends React.Component {
         stars: val,
         auth_token: Cookies.get('authToken')
       }
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/v1/cocktails/${this.state.id}/rating`, data).then(res => {
-        console.log(res)
-      })
+      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/v1/cocktails/${this.state.id}/rating`, data) // .then(res => {console.log(res)})
     }
   }
 
