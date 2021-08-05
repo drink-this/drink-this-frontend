@@ -21,7 +21,6 @@ export default class SearchResults extends React.Component {
 
   async componentDidMount() {
     let cocktails = await getSearch(this.state.query)
-    console.log(cocktails);
     this.setState({cocktails: cocktails, isLoaded: true})
   }
 

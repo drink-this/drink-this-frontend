@@ -1,7 +1,7 @@
 import React from 'react';
 import Onboard from '../components/onboard.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
-import { act } from "react-dom/test-utils";
+import { act, waitFor } from "@testing-library/react";
 
 let container = null;
 beforeEach(() => {
@@ -17,9 +17,10 @@ afterEach(() => {
   container = null;
 });
 
-it("renders", () => {
-  act(() => {
-    render(<Onboard />, container);
-  });
-  expect(container.textContent).toEqual(expect.stringMatching(/To give you the best recommendations, please rate these cocktails/g));
+it("renders", async () => {
+  render(<Onboard />, container);
+  await waitFor(() => {
+    expect(container.textContent).toEqual(expect.stringMatching(/Loading.../g));
+  })
+  
 });

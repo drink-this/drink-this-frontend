@@ -16,13 +16,13 @@ export default class ShowPage extends React.Component {
   }
 
   componentDidMount() {
-    if (this.id) {
+    if (this.id !== undefined) {
       let url = `${process.env.REACT_APP_SERVER_URL}/api/v1/cocktails/${this.id}`
       axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get('authToken')}}).then((res) => {
         this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'Have a...'})
     }).catch(err => console.log(err))
     } else {
-      let url = 'http://localhost:8080/api/v1/recommendation'
+      let url = `${process.env.REACT_APP_SERVER_URL}/api/v1/recommendation`
       axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get('authToken')}}).then((res) => {
         this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'You should have a...'})
       }).catch(err => console.log(err))
