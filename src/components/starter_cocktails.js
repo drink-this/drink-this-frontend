@@ -25,7 +25,7 @@ export default class StarterCocktails extends React.Component {
             }
             return (
               <div className="text-center" id={index} key={cocktail.name}>
-                <img src={cocktail.attributes.thumbnail} alt="Cocktail" />
+                <img className='h-60 w-60' src={cocktail.attributes.thumbnail} alt="Cocktail" />
                 <p className="mt-4">{cocktail.attributes.name}</p>
                 <Stars cname="stars flex mt-4 justify-center" value={cocktail.attributes.rating} cocktail_id={cocktail.id}/>
               </div>
