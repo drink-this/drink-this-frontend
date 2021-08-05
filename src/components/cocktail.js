@@ -65,7 +65,7 @@ export default class Cocktail extends React.Component {
             <button data-testid="next-button" className="uppercase border-2 border-black px-4 py-2 mt-4 w-full hover:bg-black hover:text-white transition">Find a different drink</button>
           </div>
   
-          <SocialLinks cnames="mx-4 space-y-8" />
+          {/* <SocialLinks cnames="mx-4 space-y-8" /> */}
         </div>
       </section>
     )
