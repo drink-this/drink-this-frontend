@@ -20,12 +20,10 @@ const SignOutButton = () => {
   return (
     <GoogleLogout
       clientId={process.env.REACT_APP_CLIENT_ID}
-      buttonText={"Logout"}
       onLogoutSuccess={_onLogoutSuccess}
-      tag={'a'}
-      type={'none'}
-      icon={false}
-      className={'font-playfair font-bold hover:underline mx-16'}
+      render={
+        (renderProps) => {return <button onClick={renderProps.onClick} className="font-playfair font-bold hover:underline mx-16">Logout</button>}
+      }
     />
   );
 }
