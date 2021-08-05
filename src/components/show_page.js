@@ -22,7 +22,7 @@ export default class ShowPage extends React.Component {
         this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'Have a...'})
     }).catch(err => console.log(err))
     } else {
-      let url = 'http://localhost:3001/api/v1/cocktails/11007'
+      let url = 'http://localhost:8080/api/v1/recommendation'
       axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get('authToken')}}).then((res) => {
         this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'You should have a...'})
       }).catch(err => console.log(err))
