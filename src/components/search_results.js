@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import { getSearch } from '../service/cocktail.js';
 const queryString = require('query-string');
 
 export default class SearchResults extends React.Component {
-  source = axios.CancelToken.source()
+  // source = axios.CancelToken.source()
   constructor(props) {
     super(props);
     this.state = {
@@ -20,27 +19,18 @@ export default class SearchResults extends React.Component {
     return parsed.q;
   }
 
-  componentDidMount() {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/cocktails/search`, {cancelToken: this.source.token, params:{search: this.state.query, auth_token: Cookies.get('authToken')}})
-      .then((res) => {
-        this.setState({cocktails: res.data.data, isLoaded: true})
-      })
-      .catch((err) => {
-        this.source.cancel('unmounting')
-      })
-  }
-
-  componentWillUnmount() {
-    this.source.cancel('unmounting')
+  async componentDidMount() {
+    let cocktails = await getSearch(this.state.query)
+    console.log(cocktails);
+    this.setState({cocktails: cocktails, isLoaded: true})
   }
 
   render() {
-    console.log(this.state.cocktails.length);
     if (this.state.cocktails.length != 0 && this.state.isLoaded == true) {
     let cocktails = this.state.cocktails
       return(
         <div className="font-playfair font-normal text-3xl text-center mx-56">
-          <h2 className="mb-16">Search results for <span className="italic">'{this.state.query}'</span></h2>
+          <h2 id="head-text" className="mb-16">Search results for <span className="italic">'{this.state.query}'</span></h2>
           <div className="grid grid-cols-5 gap-4 justify-items-stretch">
             {cocktails.map((drink) => {
               let image = drink.attributes.thumbnail

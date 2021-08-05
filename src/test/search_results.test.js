@@ -3,7 +3,8 @@ import SearchResults from '../components/search_results.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { Router, Route } from 'react-router'
 import { createMemoryHistory } from 'history'
-// import { waitFor } from '@testing-library/react';
+import { act, getTextBy, waitFor } from '@testing-library/react';
+// jest.mock('../service/cocktail')
 const history = createMemoryHistory({ initialEntries: ['/search?q=drink'] })
 
 let container = null;
@@ -26,13 +27,8 @@ afterEach(() => {
   container.remove();
   container = null;
 });
-
-it("renders", () => {
-  renderWithRouter(SearchResults)
-  expect(container.textContent).toEqual(expect.stringMatching(/Search results for/g));
+// still need to mock out api call
+it("renders", async () => {
+  renderWithRouter(SearchResults);
+  waitFor(() => getTextBy('.head-text', "Search results for 'drink'"));
 });
-
-it("grabs query param from url", () => {
-  renderWithRouter(SearchResults)
-  expect(container.textContent).toEqual(expect.stringMatching(/Search results for 'drink'/g));
-})
