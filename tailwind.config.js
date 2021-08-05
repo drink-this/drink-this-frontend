@@ -10,7 +10,7 @@ module.exports = {
       backgroundImage: theme => ({
         'landing': "url('images/zoomed-drink-this-landing.jpg')",
         'blurry-bar': "url('images/blurry-bar.jpg')",
-        'bottles': "url('images/test.png')"
+        'bottles': "url('images/bottles.jpg')"
       })
     },
   },
