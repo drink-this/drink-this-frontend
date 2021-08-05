@@ -34,7 +34,7 @@ export default class SearchResults extends React.Component {
   }
 
   render() {
-    if (this.state.cocktails.length == 0) {
+    if (this.state.cocktails.length != 0) {
     let cocktails = this.state.cocktails
       return(
         <div className="font-playfair font-normal text-3xl text-center mx-56">
