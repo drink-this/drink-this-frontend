@@ -50,9 +50,8 @@ export default class StarterCocktails extends React.Component {
         <div className="flex justify-center">
           <button disabled={disabled}
           className={disabled ? this.disabledClasses : this.enabledClasses}
-          >Find me a drink!</button>
+          ><a href="/recommendation">Find me a drink!</a></button>
         </div> 
-
       </div>  
     ) 
   }
