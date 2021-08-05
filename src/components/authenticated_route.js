@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import authStore from '../stores/auth_store.js';
 import Header from './header.js';
+import Landing from './landing.js';
 
 export default class AuthenticatedRoute extends React.Component {
   render() {
@@ -13,7 +14,8 @@ export default class AuthenticatedRoute extends React.Component {
         </div>
       );
     } else {
-      return <Redirect to={'/'} />;
+      console.log('going to landing');
+      return <Route to='/' component={Landing} />;
     }
   }
 }
