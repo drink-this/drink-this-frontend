@@ -80,6 +80,10 @@ export default class App extends React.Component {
             path="/cocktails/:id"
             component={ShowPage}
             />
+          <AuthenticatedRoute
+            path="*"
+            component={Dashboard}
+            />
           {this._renderRedirect()}
           <UnauthenticatedRoute
             path='/'
