@@ -6,28 +6,41 @@ export default class StarterCocktails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.data
+      data: this.props.data,
+      clicked: []
     }
+  }
+
+  removeUnrated(index) {
+    this.setState({clicked: this.state.clicked.filter(i => i == index)})
+  }
+
+  handleClick = (e, clicked, rating, index) => {
+    console.log(rating)
+    // if (rating > 0) {
+    //   // this.setState({clicked: [...clicked, index]})
+    //   // clicked.push(index)
+    // } else {
+     
+    //   // clicked.filter(i => i == index)
+    // }
   }
 
   render() {
     let data = this.state.data;
-    let clicked = [];
+    let clicked = this.state.clicked;
 
     return (      
       <div>
         <div className="flex justify-center space-x-8">
           {data.map((cocktail,index) => {
-            if (cocktail.attributes.rating > 0) {
-              clicked.push(index)
-            } else {
-              clicked.filter(i => i == index)
-            }
             return (
               <div className="text-center" id={index} key={cocktail.name}>
                 <img src={cocktail.attributes.thumbnail} alt="Cocktail" />
                 <p className="mt-4">{cocktail.attributes.name}</p>
-                <Stars cname="stars flex mt-4 justify-center" value={cocktail.attributes.rating} cocktail_id={cocktail.id}/>
+                <div onClick={this.handleClick(clicked, cocktail.attributes.rating, index)}>
+                  <Stars cname="stars flex mt-4 justify-center" value={cocktail.attributes.rating} cocktail_id={cocktail.id}/>
+                </div>
               </div>
             )
           }
