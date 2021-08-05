@@ -6,10 +6,16 @@ const axios = Axios.create({
 });
 
 export const getSearch = async(query) => {
+  let data
   let params = {
     search: query,
     auth_token: Cookies.get('authToken')
   }
-  let {data} = await axios.get('/api/v1/cocktails/search', {params: params});
-  return data.data;
+  try {
+    let res = await axios.get('/api/v1/cocktails/search', {params: params})
+    data = res.data.data
+  } catch (err){
+    data = []
+  }
+  return data;
 }
