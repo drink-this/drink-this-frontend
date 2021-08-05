@@ -8,7 +8,7 @@ export default class Onboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      cocktails: [],
       isLoaded: false
     }
   }
@@ -16,7 +16,7 @@ export default class Onboard extends React.Component {
   componentDidMount() {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/dashboard`, {cancelToken: this.source.token, params:{auth_token: Cookies.get('authToken')}})
       .then((res) => {
-        this.setState({data: res.data.data, isLoaded: true})
+        this.setState({cocktails: res.data.data, isLoaded: true})
       })
       .catch((err) => {
         this.source.cancel('unmounting')

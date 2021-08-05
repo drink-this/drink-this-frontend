@@ -6,46 +6,47 @@ export default class StarterCocktails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: this.props.data
     }
   }
 
   render() {
-    let data = [
-      {
-        "id": "1",
-        "name": "Cocktail 1",
-        "image": 'http://via.placeholder.com/200/100',
-        "rating": 0
-      },
-      {
-        "id": "1",
-        "name": "Cocktail 2",
-        "image": 'http://via.placeholder.com/200/200',
-        "rating": 3
-      },
-      {
-        "id": "1",
-        "name": "Cocktail 3",
-        "image": 'http://via.placeholder.com/200/300',
-        "rating": 0
-      },
-      {
-        "id": "1",
-        "name": "Cocktail 4",
-        "image": 'http://via.placeholder.com/200/400',
-        "rating": 0
-      },
-      {
-        "id": "1",
-        "name": "Cocktail 5",
-        "image": 'http://via.placeholder.com/200/500',
-        "rating": 4
-      },
-    ];
+    // let data = [
+    //   {
+    //     "id": "1",
+    //     "name": "Cocktail 1",
+    //     "image": 'http://via.placeholder.com/200/100',
+    //     "rating": 5
+    //   },
+    //   {
+    //     "id": "1",
+    //     "name": "Cocktail 2",
+    //     "image": 'http://via.placeholder.com/200/200',
+    //     "rating": 3
+    //   },
+    //   {
+    //     "id": "1",
+    //     "name": "Cocktail 3",
+    //     "image": 'http://via.placeholder.com/200/300',
+    //     "rating": 2
+    //   },
+    //   {
+    //     "id": "1",
+    //     "name": "Cocktail 4",
+    //     "image": 'http://via.placeholder.com/200/400',
+    //     "rating": 3
+    //   },
+    //   {
+    //     "id": "1",
+    //     "name": "Cocktail 5",
+    //     "image": 'http://via.placeholder.com/200/500',
+    //     "rating": 4
+    //   },
+    // ];
+    let data = this.state.data;
     let clicked = [];
 
-    return (
+    return (      
       <div>
         <div className="flex justify-center space-x-8">
           {data.map((cocktail,index) => {
@@ -56,14 +57,13 @@ export default class StarterCocktails extends React.Component {
             }
             return (
               <div className="text-center" id={index} key={cocktail.name}>
-                <img src={cocktail.image} alt="Cocktail" />
-                <p className="mt-4">Cocktail Name</p>
-                <Stars cname="stars flex mt-4 justify-center" value={cocktail.rating} cocktail_id={cocktail.id}/>
+                <img src={cocktail.attributes.thumbnail} alt="Cocktail" />
+                <p className="mt-4">{cocktail.attributes.name}</p>
+                <Stars cname="stars flex mt-4 justify-center" value={cocktail.attributes.rating} cocktail_id={cocktail.id}/>
               </div>
             )
           }
           )}
-          <p>{clicked.length}</p>
         </div>
         <RecommendationButton clicked={clicked.length}/>
       </div>  
