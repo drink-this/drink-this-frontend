@@ -9,7 +9,7 @@ export default class RecommendationButton extends React.Component {
   }
 
   render() {
-    if (this.state.clicked == 5) {
+    if (this.state.clicked.length >= 5) {
       return (
       <div className="flex justify-center">
         <a href="/recommendation" 
