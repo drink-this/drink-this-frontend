@@ -8,7 +8,7 @@ export default class Stars extends React.Component {
     super(props)
     this.state = {
       rating: parseInt(this.props.value),
-      name: this.props.name,
+      // name: this.props.name,
       id: this.props.cocktail_id,
       selection: 0
     }
