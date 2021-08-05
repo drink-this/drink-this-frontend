@@ -30,7 +30,7 @@ export default class Cocktail extends React.Component {
         <div>
           <p className="font-playfair italic text-3xl pb-3">{this.props.tagline}</p>
           <h1 className="font-playfair font-black text-6xl pb-2">{ name }</h1>
-          <p className="font-montserrat italic">Rate me to get better recommendations</p>
+          <p className="font-montserrat italic">Rate me to improve your next recommendation</p>
           <div>
             <Stars cname="flex pb-8" value={rating} cocktail_id={id}/>
           </div>
@@ -65,7 +65,7 @@ export default class Cocktail extends React.Component {
             <button data-testid="next-button" className="uppercase border-2 border-black px-4 py-2 mt-4 w-full hover:bg-black hover:text-white transition">Find a different drink</button>
           </div>
   
-          <SocialLinks cnames="mx-4 space-y-8" />
+          {/* <SocialLinks cnames="mx-4 space-y-8" /> */}
         </div>
       </section>
     )

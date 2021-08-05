@@ -8,8 +8,8 @@ import SearchResults from './search_results.js';
 import YelpSearch from './yelp_search.js';
 import ShowPage from './show_page.js';
 import authStore from '../stores/auth_store.js';
-import { AFTER_LOGIN } from '../constants.js';
 import Dashboard from './dashboard.js';
+import { AFTER_LOGIN, AFTER_LOGOUT } from '../constants.js';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,6 +17,12 @@ export default class App extends React.Component {
     this.state = {
       redirect: null
     };
+  }
+
+  _afterLogout = () => {
+    this.setState({
+      redirect: null
+    });
   }
 
   _afterLogin = () => {
@@ -37,12 +43,13 @@ export default class App extends React.Component {
       this.state = { redirect: null };
       return <Redirect to={url} />;
     } else {
-      return '';
+      return null;
     }
   }
   
   componentDidMount() {
     authStore.on(AFTER_LOGIN, this._afterLogin); 
+    authStore.on(AFTER_LOGOUT, this._afterLogout);
   }
 
   render() {
