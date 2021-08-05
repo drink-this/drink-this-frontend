@@ -1,7 +1,7 @@
-import React from 'react'
-import Cocktail from './cocktail.js'
-import axios from 'axios'
-import Cookies from 'js-cookie'
+import React from 'react';
+import Cocktail from './cocktail.js';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default class ShowPage extends React.Component {
   source = axios.CancelToken.source()
