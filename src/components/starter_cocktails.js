@@ -11,38 +11,6 @@ export default class StarterCocktails extends React.Component {
   }
 
   render() {
-    // let data = [
-    //   {
-    //     "id": "1",
-    //     "name": "Cocktail 1",
-    //     "image": 'http://via.placeholder.com/200/100',
-    //     "rating": 5
-    //   },
-    //   {
-    //     "id": "1",
-    //     "name": "Cocktail 2",
-    //     "image": 'http://via.placeholder.com/200/200',
-    //     "rating": 3
-    //   },
-    //   {
-    //     "id": "1",
-    //     "name": "Cocktail 3",
-    //     "image": 'http://via.placeholder.com/200/300',
-    //     "rating": 2
-    //   },
-    //   {
-    //     "id": "1",
-    //     "name": "Cocktail 4",
-    //     "image": 'http://via.placeholder.com/200/400',
-    //     "rating": 3
-    //   },
-    //   {
-    //     "id": "1",
-    //     "name": "Cocktail 5",
-    //     "image": 'http://via.placeholder.com/200/500',
-    //     "rating": 4
-    //   },
-    // ];
     let data = this.state.data;
     let clicked = [];
 
