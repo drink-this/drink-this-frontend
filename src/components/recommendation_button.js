@@ -8,14 +8,8 @@ export default class RecommendationButton extends React.Component {
     }
   }
 
-  parseParams = (props) => {
-    const { location: { clicked } } = props;
-    let parsed = queryString.parse(search);
-    return parsed.q;
-  }
-
   render() {
-    if (clicked == 5) {
+    if (this.state.clicked == 5) {
       return (
       <div className="flex justify-center">
         <a href="/recommendation" 
