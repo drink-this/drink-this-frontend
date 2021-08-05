@@ -11,7 +11,7 @@ class AuthStore extends EventEmitter {
   }
 
   setAuthed = (token) => {
-    Cookies.set('authToken', token, { expires: 1 });
+    Cookies.set('authToken', token, { expires: 1, path: '/' });
   }
 
   setIsUserNew = (isNew) => {
