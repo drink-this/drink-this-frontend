@@ -52,13 +52,11 @@ export default class Cocktail extends React.Component {
               </ol>
             </div>
           </div>
-          <input onChange={this.updateQ} className="mt-10 mb-2 border-b-2 border-black" type="text" placeholder="City / State" ref={this.loc}/>
-          <a 
-            href={`/search/yelp?q=${name}&loc=${this.state.loc}`}
-            className="flex flex-col w-60 font-montserrat font-semibold border-2 border-black px-8 py-2 text-xl "
-          >
-            Find near you <span className="text-xs italic">Powered by Yelp</span>
-          </a>
+          <form method="get" action={`/search/yelp?q=${name}&loc=${this.state.loc}`} >
+            <input type="hidden" value={name} name="q"/>
+            <input name="loc" onChange={this.updateQ} className="font-playfair italic mt-10 mb-2 border-b-2 border-black" type="text" placeholder="City / State / Zipcode" ref={this.loc}/>
+            <button disabled={!this.state.loc} className="flex flex-col w-60 font-montserrat font-semibold border-2 border-black px-8 py-2 text-xl disabled:opacity-50" type="submit">Find near you <span className="text-xs italic">Powered by Yelp</span></button>
+          </form>
         </div>
         <div className="flex justify-around">
   

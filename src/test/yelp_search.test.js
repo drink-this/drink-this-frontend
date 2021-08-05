@@ -26,11 +26,8 @@ afterEach(() => {
   container.remove();
   container = null;
 });
-
+// still need to mock out api call
 it("renders", () => {
   renderWithRouter(YelpSearch);
-  const text = screen.getByText(/Search results for/);
-  expect(text).toBeInTheDocument();
-  const query = screen.getByText(/'drink'/);
-  expect(query).toBeInTheDocument();
+  waitFor(() => getTextBy("Search results for 'drink'"));
 })
