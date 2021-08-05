@@ -8,7 +8,9 @@ module.exports = {
     },
     extend: {
       backgroundImage: theme => ({
-        'hero-pattern': "url('images/zoomed-drink-this-landing.jpg')"
+        'landing': "url('images/zoomed-drink-this-landing.jpg')",
+        'blurry-bar': "url('images/blurry-bar.jpg')",
+        'bottles': "url('images/test.png')"
       })
     },
   },
