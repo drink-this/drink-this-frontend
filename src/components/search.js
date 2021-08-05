@@ -4,10 +4,6 @@ import { useHistory } from "react-router-dom";
 
 const Search = () => {
 
-  const handleSubmit = (e) => {
-    console.log(e);
-  }
-
   return (
     <div className="flex h-min items-center">
       <div className="pt-1 mr-2">
@@ -16,7 +12,7 @@ const Search = () => {
           <line x1="17.1" y1="14.7" x2="22.7" y2="18.9" stroke="black" strokeWidth="3" strokeLinecap="round"/>
         </svg>
       </div>
-      <form onSubmit={handleSubmit} action="/search">
+      <form action="/search">
         <input type="text" placeholder="Search" name="q" className="border-b-2 border-black w-80"/>
       </form>
     </div>
