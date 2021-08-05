@@ -20,9 +20,9 @@ export default class RecommendationButton extends React.Component {
     } else {
       return (
         <div className="flex justify-center">
-          <a href="/onboard" 
+          <button disabled={true}
           className="flex justify-center uppercase border-2 text-gray-400 border-gray-400 py-2 px-20 m-8 w-1/3 hover:text-gray-500 hover:bg-white transition"
-          >Find me a drink!</a>
+          >Find me a drink!</button>
         </div> 
         )
     }  
