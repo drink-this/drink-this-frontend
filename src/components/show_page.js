@@ -16,7 +16,7 @@ export default class ShowPage extends React.Component {
   }
 
   componentDidMount() {
-    if (this.id) {
+    if (this.id !== undefined) {
       let url = `${process.env.REACT_APP_SERVER_URL}/api/v1/cocktails/${this.id}`
       axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get('authToken')}}).then((res) => {
         this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'Have a...'})
