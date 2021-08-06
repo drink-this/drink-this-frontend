@@ -5,7 +5,7 @@ https://https://drink-this-frontend.herokuapp.com/
 
 ## About this Project
 
-Describe the project
+Drink This is a cocktail recommendation app that provides cocktail recommendations to the user. In the front end of this app, we used ReactJS to provide a clean feel. Movement between pages is smooth and seamless, as opposed to rendering views that may take time to load. Another look and feel to this is the frontend interaction with the backend. We displayed simple thumbnails of the cocktails consumed from the CocktailDB API from the backend.
 
 ## Local Setup for Developers
 
@@ -33,7 +33,7 @@ Tests with [Jest](https://jestjs.io/docs/getting-started)
 ## To Add changes
 
 - Create PR
-- Add the PR to the Viewing Party Project
+- Add the PR to the Drink This Frontend project
 - Link any issues to the PR and use the PR template provided
 - Add Authors as Reviewers
 
