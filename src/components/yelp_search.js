@@ -45,7 +45,7 @@ export default class YelpSearch extends React.Component {
                   <div className="text-left ml-8">
                     <p className="text-sm italic" href="#">{types.join(', ')}</p>
                     <a className="font-bold my-2 underline" href={yelp_link}>{name}</a>
-                    <p className="text-base" href="#">{address}</p>
+                    <p className="text-base" href="#">{address.join(' ')}</p>
                   </div>
                 </div>
               )
