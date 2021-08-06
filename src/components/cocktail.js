@@ -32,7 +32,7 @@ export default class Cocktail extends React.Component {
           <h1 className="font-playfair font-black text-6xl pb-2">{ name }</h1>
           <p className="font-montserrat italic">Rate me to improve your next recommendation</p>
           <div>
-            <Stars cname="flex pb-8" value={rating} cocktail_id={id}/>
+            <Stars cname="flex pb-8 cursor-pointer" value={rating} cocktail_id={id}/>
           </div>
           <div className="flex space-x-10">
             <div>
