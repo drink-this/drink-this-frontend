@@ -1,7 +1,7 @@
 ## Drink This
 ### Live at
 
-https://https://drink-this-frontend.herokuapp.com/
+https://drink-this-frontend.herokuapp.com/
 
 ## About this Project
 
