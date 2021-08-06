@@ -1,8 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom';
+import React, { ProvideAuth, PrivateRoute } from "./auth_provider";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import Landing from './landing.js';
-import AuthenticatedRoute from "./authenticated_route";
-import UnauthenticatedRoute from './unauthenticated_route';
 import Onboard from './onboard.js';
 import SearchResults from './search_results.js';
 import YelpSearch from './yelp_search.js';
@@ -24,28 +27,6 @@ export default class App extends React.Component {
       redirect: null
     });
   }
-
-  _afterLogin = () => {
-    if (authStore.isUserNew() === 'true') {
-      this.setState({
-        redirect: '/onboard'
-      });
-    } else {
-      this.setState({
-        redirect: '/dashboard'
-      });
-    }
-  }
-
-  _renderRedirect = () => {
-    if (this.state.redirect !== null) {
-      let url = this.state.redirect;
-      this.state = { redirect: null };
-      return <Redirect to={url} />;
-    } else {
-      return null;
-    }
-  }
   
   componentDidMount() {
     authStore.on(AFTER_LOGIN, this._afterLogin); 
@@ -54,43 +35,86 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <AuthenticatedRoute
-            path='/dashboard'
-            component={Dashboard}
-          />
-          <AuthenticatedRoute
-            path="/onboard"
-            component={Onboard}
-          />
-          <AuthenticatedRoute
-            path="/search/yelp"
-            component={YelpSearch}
-            />
-          <AuthenticatedRoute
-            path="/search"
-            component={SearchResults}
-            />
-          <AuthenticatedRoute
-            path="/recommendation"
-            component={ShowPage}
-            />
-          <AuthenticatedRoute
-            path="/cocktails/:id"
-            component={ShowPage}
-            />
-              {this._renderRedirect()}
-          <AuthenticatedRoute
-            path="*"
-            component={Dashboard}
-            />
-          <UnauthenticatedRoute
-            path='/'
-            component={Landing}
-          />
-        </Switch>
-      </Router>
+      <ProvideAuth>
+        <Router>
+          <div>
+            <Switch>
+              <Route path="/">
+                <Landing />
+              </Route>
+              <PrivateRoute path="/dashboard">
+                <Dashboard />
+              </PrivateRoute>
+              <PrivateRoute path="/onboard">
+                <Onboard />
+              </PrivateRoute>
+              <PrivateRoute path="/search/yelp">
+                <YelpSearch />
+              </PrivateRoute>
+              <PrivateRoute path="/search">
+                <SearchResults />
+              </PrivateRoute>
+              <PrivateRoute path="/recommendation">
+                <ShowPage />
+              </PrivateRoute>
+              <PrivateRoute path="/search">
+                <SearchResults />
+              </PrivateRoute>
+            </Switch>
+          </div>
+        </Router>
+      </ProvideAuth>
     );
   }
 }
+
+// const authWithGoogle = {
+//   isAuthenticated: false,
+//   signin(cb) {
+//     // do the google thing?
+//   },
+//   signout(cb) {
+//     // sign out of the google
+//   }
+// };
+
+
+// function AuthButton() {
+//   let history = useHistory();
+//   let auth = useAuth();
+
+//   return auth.user ? (
+//     <p>
+//       Welcome!{" "}
+//       <button
+//         onClick={() => {
+//           auth.signout(() => history.push("/"));
+//         }}
+//       >
+//         Sign out
+//       </button>
+//     </p>
+//   ) : (
+//     <p>You are not logged in.</p>
+//   );
+// }
+
+// function LoginPage() {
+//   let history = useHistory();
+//   let location = useLocation();
+//   let auth = useAuth();
+
+//   let { from } = location.state || { from: { pathname: "/" } };
+//   let login = () => {
+//     auth.signin(() => {
+//       history.replace(from);
+//     });
+//   };
+
+//   return (
+//     <div>
+//       <p>You must log in to view the page at {from.pathname}</p>
+//       <button onClick={login}>Log in</button>
+//     </div>
+//   );
+// }
