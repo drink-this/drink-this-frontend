@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import React from 'react'
+import { GOOGLE_TOKEN_NAME } from '../constants.js'
 import Star from './star.js'
 
 export default class Stars extends React.Component {
@@ -27,9 +28,9 @@ export default class Stars extends React.Component {
     if (val != null && !isNaN(val)) {
       let data = {
         stars: val,
-        auth_token: Cookies.get('authToken')
+        auth_token: Cookies.get(GOOGLE_TOKEN_NAME)
       }
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/v1/cocktails/${this.state.id}/rating`, data) // .then(res => {console.log(res)})
+      axios.post(`${process.env.REACT_APP_SERVER_URL}api/v1/cocktails/${this.state.id}/rating`, data) // .then(res => {console.log(res)})
     }
   }
 

@@ -3,6 +3,8 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import googleAuthStore from "../stores/google_auth_store";
+import Header from "./header";
 
 const authContext = createContext();
 
@@ -16,7 +18,8 @@ function ProvideAuth({ children }) {
 }
 
 function useProvideAuth() {
-  const [userState, setUserState] = useState(null);
+  // On any hard refresh this gets nuked. Using the store right now until a new solution is made
+  const [userState, setUserState] = useState(googleAuthStore.isAuthed());
 
   const setUserAuthedState = (isUserAuthed, callback) => {
     setUserState(isUserAuthed);
@@ -26,7 +29,7 @@ function useProvideAuth() {
   };
 
   const userAuthed = () => {
-    console.log('checking authed state');
+    console.log('checking authed state: ' + userState);
     return userState === null ? false : userState;
   }
 
@@ -40,24 +43,27 @@ function useAuth() {
   return useContext(authContext);
 }
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute(props) {
   let auth = useAuth();
   return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        auth.userAuthed() ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: '/',
-              state: { from: location }
-            }}
-          />
-        )
-      }
-    />
+    <div>
+      <Header/>
+      <Route
+        {...props}
+        render={(props) =>
+          auth.userAuthed() ? (
+            <component {...props}/>
+          ) : (
+            <Redirect
+              to={{
+                pathname: '/',
+                state: { from: props.location }
+              }}
+            />
+          )
+        }
+      />
+    </div>
   );
 }
 

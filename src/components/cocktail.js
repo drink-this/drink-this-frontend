@@ -62,7 +62,7 @@ export default class Cocktail extends React.Component {
   
           <div className="font-montserrat font-semibold">
             <div className="cocktail_image w-96 h-96 mb-4 bg-cover" style={{backgroundImage: `url("${thumbnail}")`}}></div>
-            <a data-testid="next-button" href="/recommendation" className="uppercase border-2 border-black px-4 py-2 mt-4 w-full hover:bg-black hover:text-white transition">Find a different drink</a>
+            <Link data-testid="next-button" to="/recommendation" className="uppercase border-2 border-black px-4 py-2 mt-4 w-full hover:bg-black hover:text-white transition">Find a different drink</Link>
           </div>
   
           {/* <SocialLinks cnames="mx-4 space-y-8" /> */}

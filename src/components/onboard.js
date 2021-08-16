@@ -2,6 +2,7 @@ import React from 'react';
 import StarterCocktails from './starter_cocktails.js';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { GOOGLE_TOKEN_NAME } from '../constants.js';
 
 export default class Onboard extends React.Component {
   source = axios.CancelToken.source()
@@ -14,7 +15,7 @@ export default class Onboard extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/dashboard`, {cancelToken: this.source.token, params:{auth_token: Cookies.get('authToken')}})
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/dashboard`, {cancelToken: this.source.token, params:{auth_token: Cookies.get(GOOGLE_TOKEN_NAME)}})
       .then((res) => {
         this.setState({cocktails: res.data.data, isLoaded: true})
       })
