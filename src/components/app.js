@@ -16,9 +16,6 @@ export default function App () {
     <ProvideAuth>
       <Router>
         <Switch>
-          <Route path="/">
-            <Landing />
-          </Route>
           <PrivateRoute path="/dashboard">
             <Dashboard />
           </PrivateRoute>
@@ -37,6 +34,9 @@ export default function App () {
           <PrivateRoute path="/search">
             <SearchResults />
           </PrivateRoute>
+          <Route path="/">
+            <Landing />
+          </Route>
         </Switch>
       </Router>
     </ProvideAuth>
