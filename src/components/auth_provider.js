@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from "react";
+import React, { useContext, createContext, useState } from "react";
 import {
   Route,
   Redirect
@@ -15,37 +15,39 @@ function ProvideAuth({ children }) {
   );
 }
 
-function useAuth() {
-  return useContext(authContext);
-}
-
 function useProvideAuth() {
-  const signin = cb => {
-    
+  const [userState, setUserState] = useState(null);
+
+  const setUserAuthedState = (isUserAuthed, callback) => {
+    if (isUserAuthed) {
+      callback();
+    }
+    setUserState(isUserAuthed);
   };
 
-  const signout = cb => {
-    
-  };
+  const userAuthed = () => {
+    console.log('checking authed state');
+    return userState === null ? false : userState;
+  }
 
   return {
-    signin,
-    signout
+    setUserAuthedState,
+    userAuthed,
   };
 }
 
 function PrivateRoute({ children, ...rest }) {
-  let auth = useAuth();
+  let auth = useContext(authContext);
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user ? (
+        auth.userAuthed ? (
           children
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: '/',
               state: { from: location }
             }}
           />
@@ -55,4 +57,4 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
-export default { PrivateRoute, ProvideAuth, useAuth, useProvideAuth }
+export { PrivateRoute, ProvideAuth, authContext }

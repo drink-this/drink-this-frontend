@@ -2,7 +2,7 @@ import Actions from "../../core/app_actions";
 import Axios from 'axios';
 import Router, { checkStatus, handleError } from '../../core/router.js';
 import { CONFIRM_LOG_IN } from '../../constants.js';
-import authStore from "../../stores/auth_store";
+import googleAuthStore from "../../stores/google_auth_store";
 
 Actions.register(CONFIRM_LOG_IN, payload => {
   Axios.get(Router.route(CONFIRM_LOG_IN), {
@@ -12,8 +12,8 @@ Actions.register(CONFIRM_LOG_IN, payload => {
   })
   .then(checkStatus)
   .then(response => {
-    authStore.setAuthed(response.data.token);
-    authStore.setIsUserNew(response.data.is_new);
+    googleAuthStore.setAuthed(response.data.token);
+    googleAuthStore.setIsUserNew(response.data.is_new);
     Actions.finish(payload)
   }).catch(handleError);
 });

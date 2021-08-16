@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GoogleLogout } from 'react-google-login';
 import AppDispatcher from '../core/dispatcher';
 
 import { LOGOUT, AFTER_LOGOUT } from '../constants';
-import authStore from '../stores/auth_store';
+import googleAuthStore from '../stores/google_auth_store';
+import { authContext } from './auth_provider';
+import { useHistory } from 'react-router-dom';
 
-const SignOutButton = () => {
+export default function SignOutButton () {
+  let auth = useContext(authContext);
+  let history = useHistory();
 
   const _onLogoutSuccess = () => {
     AppDispatcher.dispatch({
       action: LOGOUT,
       emitOn: [{
-        store: authStore,
+        store: googleAuthStore,
         ids: [AFTER_LOGOUT]
       }]
     });
   }
+
+  const _afterLogoutAction = () => {
+    auth.setUserAuthedState(googleAuthStore.isAuthed(), () => {
+      history.push('/');
+    });
+  }
+
+  googleAuthStore.on(AFTER_LOGOUT, _afterLogoutAction);
 
   return (
     <GoogleLogout
@@ -27,5 +39,3 @@ const SignOutButton = () => {
     />
   );
 }
-
-export default SignOutButton;

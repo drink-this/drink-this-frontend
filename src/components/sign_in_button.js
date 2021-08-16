@@ -1,11 +1,17 @@
-import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import AppDispatcher from '../core/dispatcher';
 
 import { CONFIRM_LOG_IN, AFTER_LOGIN } from '../constants';
-import authStore from '../stores/auth_store';
+import googleAuthStore from '../stores/google_auth_store';
+import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { authContext } from './auth_provider';
 
-const SignInButton = () => {
+export default function SignInButton() {
+
+  let auth = useContext(authContext);
+  let history = useHistory();
+
   const _onLoginSuccess = (response) => {
     let authToken = response.tokenId;
 
@@ -13,15 +19,28 @@ const SignInButton = () => {
       action: CONFIRM_LOG_IN,
       authToken: authToken,
       emitOn: [{
-        store: authStore,
+        store: googleAuthStore,
         ids: [AFTER_LOGIN]
       }]
+    });
+  }
+
+  const _afterLoginAction = () => {
+    let userIsAuthed = googleAuthStore.isAuthed();
+    auth.setUserAuthedState(userIsAuthed, () => {
+      if (googleAuthStore.isUserNew()) {
+        history.push('/onboard');
+      } else {
+        history.push('/dashboard');
+      }
     });
   }
 
   const _onFailure = (response) => {
     console.log(response);
   }
+
+  googleAuthStore.on(AFTER_LOGIN, _afterLoginAction);
 
   return (
     <GoogleLogin
@@ -34,5 +53,3 @@ const SignInButton = () => {
     />
   );
 }
-
-export default SignInButton;
