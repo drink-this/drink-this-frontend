@@ -14,6 +14,10 @@ class AuthStore extends EventEmitter {
     Cookies.set('authToken', token, { expires: 1, path: '/' });
   }
 
+  isUserOfAge = (token) => {
+    Cookies.set('ageVerification', token, { expires: 1});
+  }
+
   setIsUserNew = (isNew) => {
     Cookies.set('type', isNew, { expires: 1 });
   }
