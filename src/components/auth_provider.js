@@ -43,16 +43,24 @@ function useAuth() {
   return useContext(authContext);
 }
 
-function PrivateRoute(props) {
+function PrivateRoute({ children, ...rest }) {
   let auth = useAuth();
+  const updateChildrenWithProps = (props) => {
+    return React.Children.map(
+      children,
+      (child, i) => {
+        return React.cloneElement(child, {...props});
+      }
+    );
+  };
   return (
     <div>
       <Header/>
       <Route
-        {...props}
+        {...rest}
         render={(props) =>
           auth.userAuthed() ? (
-            <component {...props}/>
+            updateChildrenWithProps(props)
           ) : (
             <Redirect
               to={{
