@@ -2,14 +2,15 @@ import React from 'react';
 import Cocktail from './cocktail.js';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { GOOGLE_TOKEN_NAME } from '../constants.js';
 
 export default class ShowPage extends React.Component {
   source = axios.CancelToken.source()
   id
   tagline
   constructor(props) {
-    super(props)
-    this.state = {cocktail: {}, isLoaded: false, tagline: ''}
+    super(props);
+    this.state = {cocktail: {}, isLoaded: false, tagline: ''};
     if (this.props.match) {
       this.id = this.props.match.params.id;
     }
@@ -17,13 +18,13 @@ export default class ShowPage extends React.Component {
 
   componentDidMount() {
     if (this.id !== undefined) {
-      let url = `${process.env.REACT_APP_SERVER_URL}/api/v1/cocktails/${this.id}`
-      axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get('authToken')}}).then((res) => {
+      let url = `${process.env.REACT_APP_SERVER_URL}api/v1/cocktails/${this.id}`;
+      axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get(GOOGLE_TOKEN_NAME)}}).then((res) => {
         this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'Have a...'})
     }).catch(err => console.log(err))
     } else {
-      let url = `${process.env.REACT_APP_SERVER_URL}/api/v1/recommendation`
-      axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get('authToken')}}).then((res) => {
+      let url = `${process.env.REACT_APP_SERVER_URL}api/v1/recommendation`;
+      axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get(GOOGLE_TOKEN_NAME)}}).then((res) => {
         this.setState({cocktail: res.data.data, isLoaded: true, tagline: 'You should have a...'})
       }).catch(err => console.log(err))
     }

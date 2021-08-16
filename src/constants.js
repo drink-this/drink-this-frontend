@@ -11,3 +11,5 @@ export const CONFIRM_LOG_IN = 'confirm-log-in';
 export const LOGOUT = 'log-out';
 export const LOGIN_BUTTON_ID = 'login-button-id';
 export const GOOGLE_TOKEN_NAME = 'googleauth';
+export const GET_COCKTAILS = 'getcocktails';
+export const PERFORM_SEARCH = 'search';

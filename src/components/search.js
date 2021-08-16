@@ -1,8 +1,22 @@
-import React from 'react';
-import SearchResults from './search_results';
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import cocktailStore from '../stores/cocktail_store';
+import { PERFORM_SEARCH } from '../constants';
+import { useHistory } from 'react-router-dom';
 
-const Search = () => {
+export default function Search () {
+  let [ searchQuery, setSearchQuery ] = useState('');
+  let history = useHistory();
+
+  const handleInputChanged = (event) => {
+    setSearchQuery(event.target.value);
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      cocktailStore.setSearchQuery(searchQuery);
+      history.replace('/search');
+    }
+  }
 
   return (
     <div className="flex h-min items-center">
@@ -12,11 +26,12 @@ const Search = () => {
           <line x1="17.1" y1="14.7" x2="22.7" y2="18.9" stroke="black" strokeWidth="3" strokeLinecap="round"/>
         </svg>
       </div>
-      <form action="/search">
-        <input type="text" placeholder="Search" name="q" className="border-b-2 border-black w-80"/>
-      </form>
+      <div>
+        <input type="text" placeholder="Search" className="border-b-2 border-black w-80" 
+              value={searchQuery} 
+              onChange={handleInputChanged}
+              onKeyDown={handleKeyDown}/>
+      </div>
     </div>
   );
 }
-
-export default Search;

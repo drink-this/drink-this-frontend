@@ -9,3 +9,7 @@ import Router from '../core/router.js';
 Router.registerRoute(Constants.CONFIRM_LOG_IN, args => {
   return `/token_auth`;
 });
+
+Router.registerRoute(Constants.GET_COCKTAILS, args => {
+  return '/api/v1/cocktails/search';
+});

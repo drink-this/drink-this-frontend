@@ -1,32 +1,45 @@
 import React from 'react';
-import { getSearch } from '../service/cocktail.js';
-const queryString = require('query-string');
+import { Link } from 'react-router-dom';
+import { GET_COCKTAILS } from '../constants';
+import AppDispatcher from '../core/dispatcher';
+import cocktailStore from '../stores/cocktail_store';
 
 export default class SearchResults extends React.Component {
   // source = axios.CancelToken.source()
   constructor(props) {
     super(props);
     this.state = {
-      query: this.parseParams(props),
+      query: cocktailStore.searchQuery,
       cocktails: [],
       isLoaded: false
     }
   }
 
-  parseParams = (props) => {
-    const { location: { search } } = props;
-    let parsed = queryString.parse(search);
-    return parsed.q;
-  }
-
-  async componentDidMount() {
-    let cocktails = await getSearch(this.state.query)
+  _loadCocktail = () => {
+    let cocktails = cocktailStore.cocktails;
     this.setState({cocktails: cocktails, isLoaded: true})
   }
 
+  componentDidMount() {
+    cocktailStore.on(GET_COCKTAILS, this._loadCocktail);
+
+    AppDispatcher.dispatch({
+      action: GET_COCKTAILS,
+      query: cocktailStore.searchQuery,
+      emitOn: [{
+        store: cocktailStore,
+        ids: [GET_COCKTAILS]
+      }]
+    });
+  }
+
+  componentWillUnmount() {
+    cocktailStore.removeListener(GET_COCKTAILS, this._loadCocktail);
+  }
+
   render() {
-    if (this.state.cocktails.length != 0 && this.state.isLoaded == true) {
-    let cocktails = this.state.cocktails
+    if (this.state.cocktails.length != 0 && this.state.isLoaded) {
+      let cocktails = this.state.cocktails
       return(
         <div className="font-playfair font-normal text-3xl text-center mx-56">
           <h2 id="head-text" className="mb-16">Search results for <span className="italic">'{this.state.query}'</span></h2>
@@ -37,14 +50,14 @@ export default class SearchResults extends React.Component {
               return (
                 <div className="justify-self-center" key={drink.id} id={drink.id}>
                   <img src={image} alt="" />
-                  <a className="text-base mt-4 hover:underline cursor-pointer" href={`/cocktails/${drink.id}`}>{name}</a>
+                  <Link className="text-base mt-4 hover:underline cursor-pointer" to={`/cocktails/${drink.id}`}>{name}</Link>
                 </div>
               )
             })}
           </div>
         </div>
       )
-    } else if (this.state.cocktails.length == 0 && this.state.isLoaded == false) {
+    } else if (this.state.cocktails.length == 0 && !this.state.isLoaded) {
       return <h1 className="font-playfair font-normal text-3xl text-center mx-56">Loading...</h1>
     } else {
       return <h1 className="font-playfair font-normal text-3xl text-center mx-56">Sorry no results for <span className="italic">'{this.state.query}'</span></h1>
