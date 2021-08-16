@@ -14,6 +14,7 @@ export default function Search () {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       cocktailStore.setSearchQuery(searchQuery);
+      setSearchQuery('');
       history.replace('/search');
     }
   }

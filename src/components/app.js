@@ -16,14 +16,30 @@ export default function App () {
     <ProvideAuth>
       <Router>
         <Switch>
-          <PrivateRoute path="/dashboard" component={Dashboard}/>
-          <PrivateRoute path="/onboard" component={Onboard}/>
-          <PrivateRoute path="/search/yelp" component={YelpSearch}/>
-          <PrivateRoute path="/search" component={SearchResults} />
-          <PrivateRoute path="/recommendation" component={ShowPage}/>
-          <PrivateRoute path="/cocktails/:id" component={ShowPage}/>
-          <PrivateRoute path="/search" component={SearchResults} />
-          <Route path="/" component={Landing} />
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
+          <PrivateRoute path="/onboard">
+            <Onboard />
+          </PrivateRoute>
+          <PrivateRoute path="/search/yelp">
+            <YelpSearch />
+          </PrivateRoute>
+          <PrivateRoute path="/search">
+            <SearchResults />
+          </PrivateRoute>
+          <PrivateRoute path="/recommendation">
+            <ShowPage />
+          </PrivateRoute>
+          <PrivateRoute path="/cocktails/:id">
+            <ShowPage />
+          </PrivateRoute>
+          <PrivateRoute path="/search">
+            <SearchResults />
+          </PrivateRoute>
+          <Route path="/">
+            <Landing />
+          </Route>
         </Switch>
       </Router>
     </ProvideAuth>

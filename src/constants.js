@@ -13,3 +13,5 @@ export const LOGIN_BUTTON_ID = 'login-button-id';
 export const GOOGLE_TOKEN_NAME = 'googleauth';
 export const GET_COCKTAILS = 'getcocktails';
 export const PERFORM_SEARCH = 'search';
+export const GET_A_COCKTAIL = 'getacocktail';
+export const GET_A_RECOMMENDATION = 'getrecommendation';

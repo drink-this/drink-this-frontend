@@ -13,3 +13,11 @@ Router.registerRoute(Constants.CONFIRM_LOG_IN, args => {
 Router.registerRoute(Constants.GET_COCKTAILS, args => {
   return '/api/v1/cocktails/search';
 });
+
+Router.registerRoute(Constants.GET_A_COCKTAIL, args => {
+  return `/api/v1/cocktails/${args.id}`;
+});
+
+Router.registerRoute(Constants.GET_A_RECOMMENDATION, args => {
+  return '/api/v1/recommendation';
+});

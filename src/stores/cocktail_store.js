@@ -5,6 +5,10 @@ class CocktailStore extends EventEmitter {
     super();
     this.cocktails = [];
     this.searchQuery = '';
+    this.cocktail = {};
+  }
+  setCocktail = (cocktail) => {
+    this.cocktail = cocktail;
   }
   setSearchQuery = (query) => {
     this.searchQuery = query;
