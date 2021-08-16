@@ -19,10 +19,10 @@ function useProvideAuth() {
   const [userState, setUserState] = useState(null);
 
   const setUserAuthedState = (isUserAuthed, callback) => {
+    setUserState(isUserAuthed);
     if (isUserAuthed) {
       callback();
     }
-    setUserState(isUserAuthed);
   };
 
   const userAuthed = () => {
@@ -36,13 +36,17 @@ function useProvideAuth() {
   };
 }
 
+function useAuth() {
+  return useContext(authContext);
+}
+
 function PrivateRoute({ children, ...rest }) {
-  let auth = useContext(authContext);
+  let auth = useAuth();
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        auth.userAuthed ? (
+        auth.userAuthed() ? (
           children
         ) : (
           <Redirect
@@ -57,4 +61,4 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
-export { PrivateRoute, ProvideAuth, authContext }
+export { PrivateRoute, ProvideAuth, useAuth }

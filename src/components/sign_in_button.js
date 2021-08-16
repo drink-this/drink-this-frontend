@@ -4,12 +4,10 @@ import AppDispatcher from '../core/dispatcher';
 import { CONFIRM_LOG_IN, AFTER_LOGIN } from '../constants';
 import googleAuthStore from '../stores/google_auth_store';
 import { useHistory } from 'react-router-dom';
-import { useContext } from 'react';
-import { authContext } from './auth_provider';
+import { useAuth } from './auth_provider';
 
 export default function SignInButton() {
-
-  let auth = useContext(authContext);
+  let auth = useAuth();
   let history = useHistory();
 
   const _onLoginSuccess = (response) => {
@@ -27,11 +25,12 @@ export default function SignInButton() {
 
   const _afterLoginAction = () => {
     let userIsAuthed = googleAuthStore.isAuthed();
+
     auth.setUserAuthedState(userIsAuthed, () => {
-      if (googleAuthStore.isUserNew()) {
-        history.push('/onboard');
+      if (googleAuthStore.isUserNew() == true) {
+        history.replace('/onboard');
       } else {
-        history.push('/dashboard');
+        history.replace('/dashboard');
       }
     });
   }

@@ -4,11 +4,11 @@ import AppDispatcher from '../core/dispatcher';
 
 import { LOGOUT, AFTER_LOGOUT } from '../constants';
 import googleAuthStore from '../stores/google_auth_store';
-import { authContext } from './auth_provider';
+import { useAuth } from './auth_provider';
 import { useHistory } from 'react-router-dom';
 
 export default function SignOutButton () {
-  let auth = useContext(authContext);
+  let auth = useAuth();
   let history = useHistory();
 
   const _onLogoutSuccess = () => {
