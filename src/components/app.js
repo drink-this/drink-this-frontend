@@ -10,6 +10,7 @@ import SearchResults from './search_results.js';
 import YelpSearch from './yelp_search.js';
 import ShowPage from './show_page.js';
 import Dashboard from './dashboard.js';
+import Rated from './rated.js';
 
 export default function App () {
   return (
@@ -36,6 +37,9 @@ export default function App () {
           </PrivateRoute>
           <PrivateRoute path="/search">
             <SearchResults />
+          </PrivateRoute>
+          <PrivateRoute path="/rated">
+            <Rated />
           </PrivateRoute>
           <Route path="/">
             <Landing />
