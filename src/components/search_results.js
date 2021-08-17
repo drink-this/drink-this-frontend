@@ -17,7 +17,11 @@ export default class SearchResults extends React.Component {
 
   _loadCocktail = () => {
     let cocktails = cocktailStore.cocktails;
-    this.setState({cocktails: cocktails, isLoaded: true})
+    this.setState({
+      cocktails: cocktails, 
+      isLoaded: true,
+      query: cocktailStore.searchQuery
+    });
   }
 
   componentDidMount() {
