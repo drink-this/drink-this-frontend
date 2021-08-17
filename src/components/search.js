@@ -16,7 +16,7 @@ export default function Search () {
     if (event.key === 'Enter') {
       cocktailStore.setSearchQuery(searchQuery);
       setSearchQuery('');
-      history.replace('/search');
+      history.push('/search');
       AppDispatcher.dispatch({
         action: GET_COCKTAILS,
         query: cocktailStore.searchQuery,
