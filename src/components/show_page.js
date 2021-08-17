@@ -3,6 +3,7 @@ import Cocktail from './cocktail.js';
 import { GET_A_COCKTAIL, GET_A_RECOMMENDATION } from '../constants.js';
 import AppDispatcher from '../core/dispatcher.js';
 import cocktailStore from '../stores/cocktail_store.js';
+import googleAuthStore from '../stores/google_auth_store.js';
 
 export default class ShowPage extends React.Component {
   constructor(props) {
@@ -46,6 +47,7 @@ export default class ShowPage extends React.Component {
         }]
       });
     } else {
+      this.checkIfUserIsNew();
       AppDispatcher.dispatch({
         action: GET_A_RECOMMENDATION,
         emitOn: [{
