@@ -64,7 +64,11 @@ export default class SearchResults extends React.Component {
     } else if (this.state.cocktails.length == 0 && !this.state.isLoaded) {
       return <h1 className="font-playfair font-normal text-3xl text-center mx-56">Loading...</h1>
     } else {
-      return <h1 className="font-playfair font-normal text-3xl text-center mx-56">Sorry no results for <span className="italic">'{this.state.query}'</span></h1>
+      if (this.state.query === '') {
+        return <h1 className="font-playfair font-normal text-3xl text-center mx-56">Empty Search</h1>
+      } else {
+        return <h1 className="font-playfair font-normal text-3xl text-center mx-56">Sorry no results for <span className="italic">'{this.state.query}'</span></h1>
+      }
     }
   }
 }
