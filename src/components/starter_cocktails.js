@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Stars from './stars.js';
 
 export default class StarterCocktails extends React.Component {
@@ -50,7 +51,7 @@ export default class StarterCocktails extends React.Component {
         <div className="flex justify-center">
           <button disabled={disabled}
           className={disabled ? this.disabledClasses : this.enabledClasses}
-          ><a href="/recommendation">Find me a drink!</a></button>
+          ><Link to="/recommendation">Find me a drink!</Link></button>
         </div> 
       </div>  
     ) 
