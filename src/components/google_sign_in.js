@@ -29,6 +29,7 @@ export default function GoogleSignIn() {
 
     auth.setUserAuthedState(userIsAuthed, () => {
       if (googleAuthStore.isUserNew() == true) {
+      if (googleAuthStore.isUserNew() === 'true') {
         history.replace('/onboard');
       } else {
         history.replace('/dashboard');
