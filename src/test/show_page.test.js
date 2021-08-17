@@ -18,6 +18,8 @@ import { getByTestId, render, screen, waitFor } from '@testing-library/react';
 //   container = null;
 // });
 
+jest.mock('../core/dispatcher.js');
+
 it("renders", async () => {
   render(<ShowPage />)
 });

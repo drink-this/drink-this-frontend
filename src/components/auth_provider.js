@@ -74,4 +74,4 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
-export { PrivateRoute, ProvideAuth, useAuth }
+export { PrivateRoute, ProvideAuth, useAuth, useProvideAuth }

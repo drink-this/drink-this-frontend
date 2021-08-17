@@ -2,6 +2,17 @@ import React from 'react';
 import Logo from '../components/logo.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
+import { Route, Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history'
+
+
+const history = createMemoryHistory({ initialEntries: ['/search?q=drink'] });
+
+const renderWithRouter = comp => render(
+  <Router history={history}>
+    <Route component={comp} />
+  </Router>, container
+);
 
 let container = null;
 beforeEach(() => {
@@ -19,7 +30,7 @@ afterEach(() => {
 
 it("renders", () => {
   act(() => {
-    render(<Logo />, container);
+    renderWithRouter(Logo);
   });
   expect(container.textContent).toBe("drink thisdrink thisdrink this");
 });
