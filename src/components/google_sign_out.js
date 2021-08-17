@@ -7,7 +7,7 @@ import googleAuthStore from '../stores/google_auth_store';
 import { useAuth } from './auth_provider';
 import { useHistory } from 'react-router-dom';
 
-export default function SignOutButton () {
+export default function GoogleSignOut () {
   let auth = useAuth();
   let history = useHistory();
 

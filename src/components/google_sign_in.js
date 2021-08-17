@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from './auth_provider';
 import { useEffect } from 'react';
 
-export default function SignInButton() {
+export default function GoogleSignIn() {
   let auth = useAuth();
   let history = useHistory();
 
