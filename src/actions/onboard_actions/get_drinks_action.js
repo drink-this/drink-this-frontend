@@ -25,7 +25,7 @@ Actions.register(GET_ONBOARD_DRINKS, payload => {
     onboardStore.setCocktails(response.data.data);
     Actions.finish(payload);
   }).catch((error) => {
-    cocktailStore.setCocktails([]);
+    onboardStore.setCocktails([]);
     payload.cancelTokenSource.cancel('unmounting');
   });
 });

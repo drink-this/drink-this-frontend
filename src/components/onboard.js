@@ -16,25 +16,25 @@ export default class Onboard extends React.Component {
   }
 
   setcocktails = () => {
-    cocktails = onboardStore.cocktails;
+    let cocktails = onboardStore.cocktails;
     this.setState({cocktails: cocktails, isLoaded: true});
   }
 
   componentDidMount() {
-    onboardStore.on('onboard', this.setcocktails);
+    onboardStore.on(GET_ONBOARD_DRINKS, this.setcocktails);
     AppDispatcher.dispatch({
       action: GET_ONBOARD_DRINKS,
       cancelTokenSource: this.source,
       emitOn: [{
         store: onboardStore,
-        ids: ['onboard']
+        ids: [GET_ONBOARD_DRINKS]
       }]
     });
   }
 
   componentWillUnmount() {
     this.source.cancel('unmounting')
-    dashboardStore.removeListener('onboard', this.setcocktails);
+    onboardStore.removeListener(GET_ONBOARD_DRINKS, this.setcocktails);
   }
 
   render () {
