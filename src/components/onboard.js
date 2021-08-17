@@ -1,8 +1,9 @@
 import React from 'react';
 import StarterCocktails from './starter_cocktails.js';
 import axios from 'axios';
-import Cookies from 'js-cookie';
-import { GOOGLE_TOKEN_NAME } from '../constants.js';
+import { GET_ONBOARD_DRINKS } from '../constants.js';
+import AppDispatcher from '../core/dispatcher.js';
+import onboardStore from '../stores/onboard_store.js';
 
 export default class Onboard extends React.Component {
   source = axios.CancelToken.source()
@@ -14,18 +15,26 @@ export default class Onboard extends React.Component {
     }
   }
 
+  setcocktails = () => {
+    cocktails = onboardStore.cocktails;
+    this.setState({cocktails: cocktails, isLoaded: true});
+  }
+
   componentDidMount() {
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/dashboard`, {cancelToken: this.source.token, params:{auth_token: Cookies.get(GOOGLE_TOKEN_NAME)}})
-      .then((res) => {
-        this.setState({cocktails: res.data.data, isLoaded: true})
-      })
-      .catch((err) => {
-        this.source.cancel('unmounting')
-      })
+    onboardStore.on('onboard', this.setcocktails);
+    AppDispatcher.dispatch({
+      action: GET_ONBOARD_DRINKS,
+      cancelTokenSource: this.source,
+      emitOn: [{
+        store: onboardStore,
+        ids: ['onboard']
+      }]
+    });
   }
 
   componentWillUnmount() {
     this.source.cancel('unmounting')
+    dashboardStore.removeListener('onboard', this.setcocktails);
   }
 
   render () {

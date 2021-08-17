@@ -21,3 +21,7 @@ Router.registerRoute(Constants.GET_A_COCKTAIL, args => {
 Router.registerRoute(Constants.GET_A_RECOMMENDATION, args => {
   return '/api/v1/recommendation';
 });
+
+Router.registerRoute(Constants.GET_ONBOARD_DRINKS, args => {
+  return '/api/v1/dashboard';
+});
