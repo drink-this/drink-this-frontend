@@ -2,25 +2,26 @@ import React from 'react';
 import AuthPanel from './auth_panel';
 import WhiteLogo from './white_logo';
 import Cookies from "js-cookie";
+import authStore from '../stores/auth_store.js';
 
 export default class Landing extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      userConfirmed: false
+      userConfirmed: authStore.isUserOfAge()
     };
   }
 
-  _afterUserConfirm = () => {
-    if (authStore.isUserOfAge() === 'true') {
-      this.setState({
-        userConfirmed: true
-      });
-    } else {
-      this.setState({
-        redirect: '/dashboard'
-      });
-    }
+  userConfirm = () => {
+    authStore.setUserOfAge('over 21')
+    this.setState({
+      userConfirmed: true
+    });
+  }
+
+
+  underAge  = () => {
+  alert("Sorry too young!");
   }
 
   render() {
@@ -43,14 +44,19 @@ export default class Landing extends React.Component {
         <section className="flex justify-evenly">
           <div className='age-consent'>
             <p className="font-montserrat font-bold uppercase">Are you 21 years or older?</p>
-            <a href="/" className="flex flex-col w-60 font-montserrat font-semibold border-2 border-black px-8 py-2 text-xl disabled:opacity-50">
+            <button onClick = {this.userConfirm} className="flex flex-col w-60 font-montserrat font-semibold border-2 border-black px-8 py-2 text-xl disabled:opacity-50">
             Yes
-            </a><br/>
-            <a onclick="myFunction()" className="flex flex-col w-60 font-montserrat font-semibold border-2 border-black px-8 py-2 text-xl disabled:opacity-50">
+            </button><br/>
+            <button onClick={this.underAge}  className="flex flex-col w-60 font-montserrat font-semibold border-2 border-black px-8 py-2 text-xl disabled:opacity-50">
             No
-            </a>
+            </button>
           </div>
         </section>
+        // <script>
+        // underAge () {
+        // alert("Sorry too young!");
+        // }
+        // </script>
       );
     }
   }
