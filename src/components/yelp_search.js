@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { GOOGLE_TOKEN_NAME } from '../constants';
 const queryString = require('query-string');
 
 export default class YelpSearch extends React.Component {
@@ -18,10 +19,10 @@ export default class YelpSearch extends React.Component {
   }
 
   componentDidMount() {
-    let url = `${process.env.REACT_APP_SERVER_URL}api/v1/yelp_search`
+    let url = `${process.env.REACT_APP_SERVER_URL}/api/v1/yelp_search`
     let {q, loc} = this.state
     console.log(q, loc);
-    axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get('authToken'), location: loc, cocktail_name: q}}).then((res) => {
+    axios.get(url, {cancelToken: this.source.token, params: {auth_token: Cookies.get(GOOGLE_TOKEN_NAME), location: loc, cocktail_name: q}}).then((res) => {
       this.setState({results: res.data.data, isLoaded: true})
     }).catch(err => console.log(err))
   }
