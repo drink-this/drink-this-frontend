@@ -3,7 +3,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import googleAuthStore from "../stores/google_auth_store";
+import authMall from "../stores/auth_mall";
 import Header from "./header";
 
 const authContext = createContext();
@@ -18,8 +18,7 @@ function ProvideAuth({ children }) {
 }
 
 function useProvideAuth() {
-  // On any hard refresh this gets nuked. Using the store right now until a new solution is made
-  const [userState, setUserState] = useState(googleAuthStore.isAuthed());
+  const [userState, setUserState] = useState(authMall.currentAuthService?.isAuthed());
 
   const setUserAuthedState = (isUserAuthed, callback) => {
     setUserState(isUserAuthed);
