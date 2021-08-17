@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "./logo.js";
 import Search from "./search.js";
-import SignOutButton from "./sign_out_button.js";
+import GoogleSignOut from "./google_sign_out.js";
 
 const Header = () => {
   return(
@@ -9,7 +9,7 @@ const Header = () => {
       <Logo />
       <div className="flex">
         <Search />
-        <SignOutButton />
+        <GoogleSignOut />
       </div>
     </div>
   );
