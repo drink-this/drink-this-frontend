@@ -26,6 +26,12 @@ export default class ShowPage extends React.Component {
     this.setState({cocktail: cocktailStore.cocktail, isLoaded: true, tagline: 'You should have a...'});
   }
 
+  checkIfUserIsNew = () => {
+    if (googleAuthStore.setIsUserNew() === 'true') {
+      googleAuthStore.setIsUserNew('false');
+    }
+  }
+
   componentDidMount() {
     cocktailStore.on(GET_A_COCKTAIL, this.showcocktail);
     cocktailStore.on(GET_A_RECOMMENDATION, this.showrecommendation);
