@@ -5,6 +5,7 @@ import { CONFIRM_LOG_IN, AFTER_LOGIN } from '../constants';
 import googleAuthStore from '../stores/google_auth_store';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from './auth_provider';
+import { useEffect } from 'react';
 
 export default function SignInButton() {
   let auth = useAuth();
@@ -39,8 +40,13 @@ export default function SignInButton() {
     console.log(response);
   }
 
-  googleAuthStore.on(AFTER_LOGIN, _afterLoginAction);
-
+  useEffect(() => {
+    googleAuthStore.on(AFTER_LOGIN, _afterLoginAction);
+    return function cleanup() {
+      googleAuthStore.removeListener(AFTER_LOGIN, _afterLoginAction);
+    };
+  });
+  
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_CLIENT_ID}

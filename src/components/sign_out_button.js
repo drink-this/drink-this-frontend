@@ -27,7 +27,12 @@ export default function SignOutButton () {
     });
   }
 
-  googleAuthStore.on(AFTER_LOGOUT, _afterLogoutAction);
+  useEffect(() => {
+    googleAuthStore.on(AFTER_LOGOUT, _afterLogoutAction);
+    return function cleanup() {
+      googleAuthStore.removeListener(AFTER_LOGOUT, _afterLogoutAction);
+    };
+  });
 
   return (
     <GoogleLogout
