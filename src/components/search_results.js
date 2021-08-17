@@ -15,7 +15,7 @@ export default class SearchResults extends React.Component {
     }
   }
 
-  _loadCocktail = () => {
+  loadCocktails = () => {
     let cocktails = cocktailStore.cocktails;
     this.setState({
       cocktails: cocktails, 
@@ -25,7 +25,7 @@ export default class SearchResults extends React.Component {
   }
 
   componentDidMount() {
-    cocktailStore.on(GET_COCKTAILS, this._loadCocktail);
+    cocktailStore.on(GET_COCKTAILS, this.loadCocktails);
 
     AppDispatcher.dispatch({
       action: GET_COCKTAILS,
@@ -38,7 +38,7 @@ export default class SearchResults extends React.Component {
   }
 
   componentWillUnmount() {
-    cocktailStore.removeListener(GET_COCKTAILS, this._loadCocktail);
+    cocktailStore.removeListener(GET_COCKTAILS, this.loadCocktails);
   }
 
   render() {
