@@ -2,7 +2,9 @@ import React from 'react';
 import Stars from './stars.js'
 import SocialLinks from './social_links.js'
 import { createBrowserHistory } from 'history';
-import { Link } from 'react-router-dom'
+import { GET_A_RECOMMENDATION } from '../constants.js';
+import AppDispatcher from '../core/dispatcher.js';
+import cocktailStore from '../stores/cocktail_store.js';
 
 export default class Cocktail extends React.Component {
 
@@ -11,8 +13,6 @@ export default class Cocktail extends React.Component {
     this.history = createBrowserHistory();
     this.loc = React.createRef()
     this.state = {
-      isLoaded: false,
-      cocktail: this.props.cocktail,
       loc: ''
     }
   }
@@ -21,10 +21,20 @@ export default class Cocktail extends React.Component {
     this.setState({loc: this.loc.current.value})
   }
 
+  handleFindNewDrink = () => {
+    AppDispatcher.dispatch({
+      action: GET_A_RECOMMENDATION,
+      emitOn: [{
+        store: cocktailStore,
+        ids: [GET_A_RECOMMENDATION]
+      }]
+    });
+  }
+
   render() {
-    let { cocktail: {id, attributes}} = this.state
-    let { name, recipe, instructions, thumbnail, rating } = attributes
-    instructions = instructions.split(/(?<=\.)/)
+    let { cocktail: {id, attributes}} = this.props;
+    let { name, recipe, instructions, thumbnail, rating } = attributes;
+    instructions = instructions.split(/(?<=\.)/);
     return (
       <section className="flex justify-evenly">
         <div>
@@ -62,9 +72,12 @@ export default class Cocktail extends React.Component {
   
           <div className="font-montserrat font-semibold">
             <div className="cocktail_image w-96 h-96 mb-4 bg-cover" style={{backgroundImage: `url("${thumbnail}")`}}></div>
-            <a data-testid="next-button" href="/recommendation" className="uppercase border-2 border-black px-4 py-2 mt-4 w-full hover:bg-black hover:text-white transition">Find a different drink</a>
+            <button data-testid="next-button"
+                  className="uppercase border-2 border-black px-4 py-2 mt-4 w-full hover:bg-black hover:text-white transition"
+                  onClick={this.handleFindNewDrink}
+            >Find a different drink</button>
           </div>
-  
+                
           {/* <SocialLinks cnames="mx-4 space-y-8" /> */}
         </div>
       </section>

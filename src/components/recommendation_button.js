@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class RecommendationButton extends React.Component {
   constructor(props) {
@@ -12,9 +13,9 @@ export default class RecommendationButton extends React.Component {
     if (this.state.clicked.length >= 5) {
       return (
       <div className="flex justify-center">
-        <a href="/recommendation" 
+        <Link to="/recommendation" 
         className="flex justify-center uppercase border-2 text-white bg-black border-black py-2 px-20 m-8 w-1/3 hover:text-black hover:bg-white transition"
-        >Find me a drink!</a>
+        >Find me a drink!</Link>
       </div> 
       )
     } else {
