@@ -23,8 +23,6 @@ export default class ShowPage extends React.Component {
   }
 
   showrecommendation = () => {
-    console.log('showing recommendation');
-    console.log(cocktailStore.cocktail);
     this.setState({cocktail: cocktailStore.cocktail, isLoaded: true, tagline: 'You should have a...'});
   }
 
