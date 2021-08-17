@@ -13,7 +13,6 @@ export default class ShowPage extends React.Component {
       isLoaded: false, 
       tagline: ''
     };
-    // this.source = axios.CancelToken.source();
     if (this.props.match) {
       this.id = this.props.match.params.id;
     }
@@ -59,13 +58,11 @@ export default class ShowPage extends React.Component {
   }
 
   componentWillUnmount() {
-    // this.source.cancel('unmounting');
     cocktailStore.removeListener(GET_A_COCKTAIL, this.showcocktail);
     cocktailStore.removeListener(GET_A_RECOMMENDATION, this.showrecommendation);
   }
   
   render () {
-    console.log('rendering show page');
     if (!this.state.isLoaded) {
       return <div className="font-playfair font-normal text-3xl text-center mx-56">Loading...</div>
     } else {
