@@ -26,7 +26,6 @@ Actions.register(GET_ONBOARD_DRINKS, payload => {
     Actions.finish(payload);
   }).catch((error) => {
     onboardStore.setCocktails([]);
-    payload.cancelTokenSource.cancel('unmounting');
+    Actions.finish(payload);
   });
 });
-
