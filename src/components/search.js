@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import cocktailStore from '../stores/cocktail_store';
-import { PERFORM_SEARCH } from '../constants';
+import { GET_COCKTAILS, PERFORM_SEARCH } from '../constants';
 import { useHistory } from 'react-router-dom';
+import AppDispatcher from '../core/dispatcher';
 
 export default function Search () {
   let [ searchQuery, setSearchQuery ] = useState('');
@@ -16,6 +17,14 @@ export default function Search () {
       cocktailStore.setSearchQuery(searchQuery);
       setSearchQuery('');
       history.replace('/search');
+      AppDispatcher.dispatch({
+        action: GET_COCKTAILS,
+        query: cocktailStore.searchQuery,
+        emitOn: [{
+          store: cocktailStore,
+          ids: [GET_COCKTAILS]
+        }]
+      });
     }
   }
 
