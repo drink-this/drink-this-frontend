@@ -29,7 +29,6 @@ function useProvideAuth() {
   };
 
   const userAuthed = () => {
-    console.log('checking authed state: ' + userState);
     return userState === null ? false : userState;
   }
 
