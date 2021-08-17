@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import cocktailStore from '../stores/cocktail_store';
-import { GET_COCKTAILS, PERFORM_SEARCH } from '../constants';
-import { useHistory } from 'react-router-dom';
 import AppDispatcher from '../core/dispatcher';
+import cocktailStore from '../stores/cocktail_store';
+import React, { useState } from 'react';
+import { GET_COCKTAILS } from '../constants';
+import { useHistory } from 'react-router-dom';
 
 export default function Search () {
   let [ searchQuery, setSearchQuery ] = useState('');
