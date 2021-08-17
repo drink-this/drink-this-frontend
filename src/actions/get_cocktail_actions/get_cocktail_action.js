@@ -6,7 +6,6 @@ import cocktailStore from "../../stores/cocktail_store";
 import Cookies from "js-cookie";
 
 Actions.register(GET_A_COCKTAIL, payload => {
-  console.log('get a cocktail');
   let params = {
     auth_token: Cookies.get(GOOGLE_TOKEN_NAME)
   }
@@ -22,7 +21,6 @@ Actions.register(GET_A_COCKTAIL, payload => {
 });
 
 Actions.register(GET_A_RECOMMENDATION, payload => {
-  console.log('recommendation');
   let params = {
     auth_token: Cookies.get(GOOGLE_TOKEN_NAME)
   }

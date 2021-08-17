@@ -4,5 +4,6 @@ import Cookies from "js-cookie";
 
 Actions.register(LOGOUT, payload => {
   Cookies.remove(GOOGLE_TOKEN_NAME);
+  Cookies.remove('service');
   Actions.finish(payload)
 });

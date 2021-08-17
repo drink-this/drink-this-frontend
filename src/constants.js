@@ -17,3 +17,4 @@ export const GET_A_COCKTAIL = 'getacocktail';
 export const GET_A_RECOMMENDATION = 'getrecommendation';
 export const GET_ONBOARD_DRINKS = 'getonboarddrinks';
 export const GET_RATED_COCKTAILS = 'getratedcocktails';
+export const GOOGLE_AUTH_SERVICE = 'google';

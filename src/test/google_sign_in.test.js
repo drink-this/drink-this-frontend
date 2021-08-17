@@ -1,5 +1,5 @@
 import React from 'react';
-import SignInButton from '../components/sign_in_button.js';
+import GoogleSignIn from '../components/google_sign_in';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
 
@@ -19,6 +19,6 @@ afterEach(() => {
 
 it("renders", () => {
   act(() => {
-    render(<SignInButton />, container);
+    render(<GoogleSignIn />, container);
   });
 });

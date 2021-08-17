@@ -1,7 +1,10 @@
 import React from 'react';
 import Landing from '../components/landing.js';
+import { useAuth, useProvideAuth } from '../components/auth_provider';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act } from "react-dom/test-utils";
+
+jest.mock('../components/auth_provider');
 
 let container = null;
 beforeEach(() => {
@@ -18,6 +21,11 @@ afterEach(() => {
 });
 
 it("renders", () => {
+  useAuth.mockImplementation(()=> {
+    const userAuthed = () => false;
+    const setUserAuthedState = (state) => true;
+    return {userAuthed, setUserAuthedState};
+  });
   act(() => {
     render(<Landing />, container);
   });

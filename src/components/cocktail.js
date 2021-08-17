@@ -2,7 +2,6 @@ import React from 'react';
 import Stars from './stars.js'
 import SocialLinks from './social_links.js'
 import { createBrowserHistory } from 'history';
-import { Link } from 'react-router-dom'
 import { GET_A_RECOMMENDATION } from '../constants.js';
 import AppDispatcher from '../core/dispatcher.js';
 import cocktailStore from '../stores/cocktail_store.js';
@@ -23,7 +22,6 @@ export default class Cocktail extends React.Component {
   }
 
   handleFindNewDrink = () => {
-    console.log('dispatch get another drink');
     AppDispatcher.dispatch({
       action: GET_A_RECOMMENDATION,
       emitOn: [{
@@ -34,8 +32,6 @@ export default class Cocktail extends React.Component {
   }
 
   render() {
-    console.log('rendering cocktail');
-    console.log(this.props);
     let { cocktail: {id, attributes}} = this.props;
     let { name, recipe, instructions, thumbnail, rating } = attributes;
     instructions = instructions.split(/(?<=\.)/);
