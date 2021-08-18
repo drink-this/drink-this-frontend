@@ -10,7 +10,7 @@ Actions.register(GET_ONBOARD_DRINKS, payload => {
     auth_token: Cookies.get(GOOGLE_TOKEN_NAME)
   }
   Axios.get(Router.route(GET_ONBOARD_DRINKS), {
-    cancelToken: payload.cancelTokenSource.token,
+    // cancelToken: payload.cancelTokenSource.token,
     params: params
   })
   .then(response => {

@@ -42,8 +42,11 @@ export default class Rated extends React.Component {
   render() {
     if (!this.state.isLoaded) {
       return <div className="font-playfair font-normal text-3xl text-center mx-56">Loading...</div>;
-    } else if(this.state.cocktails.length === 0 && this.state.isLoaded){
-      return <div className="font-playfair font-normal text-3xl text-center mx-56">No rated cocktails</div>;
+    } else if(this.state.cocktails.attributes?.length === 0 && this.state.isLoaded){
+      return <div className="font-playfair font-normal text-3xl text-center mx-56">
+                <p>No rated cocktails</p>
+                <Link className="underline" to={'/onboard'}>You can rate some drinks to get started here.</Link>
+              </div>;
     } else {
       return(
         <div className="mx-40 font-playfair pb-40">

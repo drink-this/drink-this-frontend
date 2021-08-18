@@ -1,6 +1,6 @@
 import Actions from "../../core/app_actions";
 import Axios from 'axios';
-import Router from '../../core/router.js';
+import Router, { handleError } from '../../core/router.js';
 import { GET_COCKTAILS, GET_RATED_COCKTAILS, GOOGLE_TOKEN_NAME } from '../../constants.js';
 import cocktailStore from "../../stores/cocktail_store";
 import Cookies from "js-cookie";
@@ -39,9 +39,6 @@ Actions.register(GET_RATED_COCKTAILS, payload => {
     cocktailStore.setCocktails(response.data.data);
     Actions.finish(payload);
   })
-  .catch((error) => {
-    var error = new Error(error);
-    throw error;
-  });
+  .catch(error => handleError(error));
 })
 
