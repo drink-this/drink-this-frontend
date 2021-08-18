@@ -5,15 +5,15 @@ import { Router, Route } from 'react-router'
 import { createMemoryHistory } from 'history'
 import { act, getTextBy, waitFor } from '@testing-library/react';
 // jest.mock('../service/cocktail')
-const history = createMemoryHistory({ initialEntries: ['/search?q=drink'] })
-
+const history = createMemoryHistory({ initialEntries: ['/search?q=drink'] });
+jest.mock('../core/dispatcher.js');
 let container = null;
 // renders components with history so that we can use the url and query params
 const renderWithRouter = Component => render(
   <Router history={history}>
     <Route component={Component} />
   </Router>, container
-)
+);
 
 beforeEach(() => {
   // setup a DOM element as a render target

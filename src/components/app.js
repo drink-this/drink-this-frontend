@@ -1,96 +1,47 @@
-import React from 'react';
-import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import { ProvideAuth, PrivateRoute } from './auth_provider';
 import Landing from './landing.js';
-import AuthenticatedRoute from "./authenticated_route";
-import UnauthenticatedRoute from './unauthenticated_route';
 import Onboard from './onboard.js';
 import SearchResults from './search_results.js';
 import YelpSearch from './yelp_search.js';
 import ShowPage from './show_page.js';
-import authStore from '../stores/auth_store.js';
 import Dashboard from './dashboard.js';
-import { AFTER_LOGIN, AFTER_LOGOUT } from '../constants.js';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      redirect: null
-    };
-  }
-
-  _afterLogout = () => {
-    this.setState({
-      redirect: null
-    });
-  }
-
-  _afterLogin = () => {
-    if (authStore.isUserNew() === 'true') {
-      this.setState({
-        redirect: '/onboard'
-      });
-    } else {
-      this.setState({
-        redirect: '/dashboard'
-      });
-    }
-  }
-
-  _renderRedirect = () => {
-    if (this.state.redirect !== null) {
-      let url = this.state.redirect;
-      this.state = { redirect: null };
-      return <Redirect to={url} />;
-    } else {
-      return null;
-    }
-  }
-  
-  componentDidMount() {
-    authStore.on(AFTER_LOGIN, this._afterLogin); 
-    authStore.on(AFTER_LOGOUT, this._afterLogout);
-  }
-
-  render() {
-    return (
+export default function App () {
+  return (
+    <ProvideAuth>
       <Router>
         <Switch>
-          <AuthenticatedRoute
-            path='/dashboard'
-            component={Dashboard}
-          />
-          <AuthenticatedRoute
-            path="/onboard"
-            component={Onboard}
-          />
-          <AuthenticatedRoute
-            path="/search/yelp"
-            component={YelpSearch}
-            />
-          <AuthenticatedRoute
-            path="/search"
-            component={SearchResults}
-            />
-          <AuthenticatedRoute
-            path="/recommendation"
-            component={ShowPage}
-            />
-          <AuthenticatedRoute
-            path="/cocktails/:id"
-            component={ShowPage}
-            />
-          <AuthenticatedRoute
-            path="*"
-            component={Dashboard}
-            />
-          {this._renderRedirect()}
-          <UnauthenticatedRoute
-            path='/'
-            component={Landing}
-          />
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
+          <PrivateRoute path="/onboard">
+            <Onboard />
+          </PrivateRoute>
+          <PrivateRoute path="/search/yelp">
+            <YelpSearch />
+          </PrivateRoute>
+          <PrivateRoute path="/search">
+            <SearchResults />
+          </PrivateRoute>
+          <PrivateRoute path="/recommendation">
+            <ShowPage />
+          </PrivateRoute>
+          <PrivateRoute path="/cocktails/:id">
+            <ShowPage />
+          </PrivateRoute>
+          <PrivateRoute path="/search">
+            <SearchResults />
+          </PrivateRoute>
+          <Route path="/">
+            <Landing />
+          </Route>
         </Switch>
       </Router>
-    );
-  }
+    </ProvideAuth>
+  );
 }
