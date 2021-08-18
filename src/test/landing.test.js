@@ -29,5 +29,5 @@ it("renders", () => {
   act(() => {
     render(<Landing />, container);
   });
-  expect(container.textContent).toBe("drink thisdrink thisdrink thisWhat should I drink tonight?Maybe it’s a classic or maybe it’s something new.Tell us what you’re into and we’ll suggest something for you.Login with Google");
+  expect(container.textContent).toBe("drink thisdrink thisdrink thisWhat should I drink tonight?Maybe it’s a classic or maybe it’s something new.Tell us what you’re into and we’ll suggest something for you.Login with GoogleTo enter, you must be at least 21 years old.YesNoYes, I am at least 21.No, I am under 21.");
 });
