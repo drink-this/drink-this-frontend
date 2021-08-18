@@ -15,8 +15,9 @@ export default function Onboard(props) {
   let history = useHistory();
 
   const setcocktails = () => {
-    setCocktails(cocktailStore.cocktails);
+    setCocktails(onboardStore.cocktails);
     setIsLoaded(true);
+    googleAuthStore.setIsUserNew('false');
   }
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function Onboard(props) {
     return function cleanup() {
       onboardStore.removeListener(GET_ONBOARD_DRINKS, setcocktails);
     };
-  });
+  }, []);
 
   if (!isLoaded) {
     return <div className="font-playfair font-normal text-3xl text-center mx-56">Loading...</div>
