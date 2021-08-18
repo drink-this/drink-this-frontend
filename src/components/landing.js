@@ -9,8 +9,8 @@ export default class Landing extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      // userConfirmed: authStore.isUserOfAge()
-      userConfirmed: true
+      userConfirmed: authStore.isUserOfAge()
+      // userConfirmed: true
     };
   }
 
@@ -20,10 +20,10 @@ export default class Landing extends React.Component {
       userConfirmed: true
     });
   }
-  //
-  // underAge = () => {
-  //   alert("Sorry too young!");
-  // }
+  
+  underAge = () => {
+    alert("Sorry too young!");
+  }
 
   render() {
     // if (this.state.userConfirmed) {
@@ -38,8 +38,11 @@ export default class Landing extends React.Component {
              <AuthPanel/>
             </div>
           </div>
-          // <Modal isOfAge={this.state.userConfirm} userConfirmFn={this.userConfirm}/>
-          <Modal cname={this.userConfirm ? 'hidden' : 'block'}/>
+          <Modal
+          yes={this.userConfirm}
+          no={this.underAge}
+          cname={this.state.userConfirmed ? 'hidden' : 'block'}
+          />
         </div>
       );
     // } else {
