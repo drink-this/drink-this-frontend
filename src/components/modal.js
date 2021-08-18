@@ -5,15 +5,6 @@ export default class Modal extends React.Component {
     super(props);
   }
 
-  // const userConfirm = () => {
-  //   ageConfirmStore.setUserOfAge('over21')
-  //   setUserConfirmed(true);
-  // }
-  //
-  // const underAge = () => {
-  //   window.open("https://www.cdc.gov/alcohol/fact-sheets/underage-drinking.htm");
-  // }
-
   render() {
     return (
       <section className={`${this.props.cname} bg-black bg-opacity-50 absolute top-0 left-0 h-screen w-screen`}>
