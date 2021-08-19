@@ -29,3 +29,7 @@ Router.registerRoute(Constants.GET_ONBOARD_DRINKS, args => {
 Router.registerRoute(Constants.GET_HOMEPAGE_INFO, args => {
   return '/api/v1/homepage';
 });
+
+Router.registerRoute(Constants.GET_RATED_COCKTAILS, args => {
+  return '/api/v1/cocktails/rated';
+});
