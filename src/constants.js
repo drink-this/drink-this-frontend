@@ -18,4 +18,5 @@ export const GET_A_RECOMMENDATION = 'getrecommendation';
 export const GET_ONBOARD_DRINKS = 'getonboarddrinks';
 export const GET_HOMEPAGE_INFO = 'gethomepageinfo';
 export const GET_RATED_COCKTAILS = 'getratedcocktails';
-export const GOOGLE_AUTH_SERVICE = 'google';
+export const AUTH_SERVICE = 'auth_service';
+export const GOOGLE_AUTH_SERVICE = 'google_auth';
