@@ -4,6 +4,7 @@ import { GET_A_COCKTAIL, GET_A_RECOMMENDATION } from '../constants.js';
 import AppDispatcher from '../core/dispatcher.js';
 import cocktailStore from '../stores/cocktail_store.js';
 import googleAuthStore from '../stores/google_auth_store.js';
+import authMall from '../stores/auth_mall.js';
 
 export default class ShowPage extends React.Component {
   constructor(props) {
@@ -27,8 +28,8 @@ export default class ShowPage extends React.Component {
   }
 
   checkIfUserIsNew = () => {
-    if (googleAuthStore.setIsUserNew() === 'true') {
-      googleAuthStore.setIsUserNew('false');
+    if (authMall.isUserNew() === 'true') {
+      authMall.setIsUserNew('false');
     }
   }
 

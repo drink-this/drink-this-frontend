@@ -2,7 +2,7 @@ import React from 'react';
 import Onboard from '../components/onboard.js';
 import { render, unmountComponentAtNode  } from 'react-dom';
 import { act, waitFor } from "@testing-library/react";
-import googleAuthStore from '../stores/google_auth_store.js';
+import authMall from '../stores/auth_mall.js';
 
 jest.mock('../core/dispatcher');
 
@@ -21,7 +21,7 @@ afterEach(() => {
 });
 
 it("renders", async () => {
-  googleAuthStore.setIsUserNew('true');
+  authMall.setIsUserNew('true');
   render(<Onboard />, container);
   await waitFor(() => {
     expect(container.textContent).toEqual(expect.stringMatching(/Loading.../g));
