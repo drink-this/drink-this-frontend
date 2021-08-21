@@ -21,7 +21,7 @@ export default function Onboard(props) {
 
   useEffect(() => {
     onboardStore.on(GET_ONBOARD_DRINKS, setcocktails);
-    if (authMall.isUserNew() === 'true') {
+    if (authMall.isUserNew()) {
       AppDispatcher.dispatch({
         action: GET_ONBOARD_DRINKS,
         emitOn: [{

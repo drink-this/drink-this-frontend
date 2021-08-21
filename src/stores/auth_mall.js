@@ -17,7 +17,8 @@ class AuthMall {
   }
 
   isUserNew = () => {
-    return Cookies.get('type');
+    let cookie_value = Cookies.get('type');
+    return (cookie_value === 'true') || (cookie_value !== undefined);
   }
 
   setIsUserNew = (isNew) => {
