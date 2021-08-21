@@ -6,7 +6,7 @@ export default class LoadingSpinner extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: spinnerStore.loadingSpinnerActive
+      loading: false
     }
   }
 
@@ -14,18 +14,26 @@ export default class LoadingSpinner extends React.Component {
     return this.state.loading ? 'block' : 'hidden';
   }
 
-  updateSpinnerState = () => {
+  showSpinner = () => {
     this.setState({
-      loading: spinnerStore.loadingSpinnerActive
+      loading: true
+    });
+  }
+
+  hideSpinner = () => {
+    this.setState({
+      loading: false
     });
   }
 
   componentDidMount() {
-    spinnerStore.on('loading', this.updateSpinnerState);
+    spinnerStore.on('loading', this.showSpinner);
+    spinnerStore.on('not-loading', this.hideSpinner);
   }
-
+  
   componentWillUnmount() {
-    spinnerStore.removeListener('loading', this.updateSpinnerState);
+    spinnerStore.removeListener('loading', this.showSpinner);
+    spinnerStore.removeListener('not-loading', this.hideSpinner);
   }
 
   render() {
