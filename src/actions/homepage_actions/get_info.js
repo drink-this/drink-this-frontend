@@ -4,6 +4,7 @@ import Router from '../../core/router.js';
 import { GET_HOMEPAGE_INFO, GOOGLE_TOKEN_NAME } from '../../constants.js';
 import homepageStore from "../../stores/homepage_store";
 import Cookies from "js-cookie";
+import spinnerStore from "../../stores/spinner_store";
 
 Actions.register(GET_HOMEPAGE_INFO, payload => {
   let params = {
@@ -23,6 +24,7 @@ Actions.register(GET_HOMEPAGE_INFO, payload => {
   })
   .then(response => {
     homepageStore.setInfo(response.data.data);
+    spinnerStore.deactiveLoadingSpinner();
     Actions.finish(payload);
   }).catch((error) => {
     homepageStore.setInfo([]);

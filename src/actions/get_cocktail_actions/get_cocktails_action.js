@@ -4,6 +4,7 @@ import Router, { handleError } from '../../core/router.js';
 import { GET_COCKTAILS, GET_RATED_COCKTAILS, GOOGLE_TOKEN_NAME } from '../../constants.js';
 import cocktailStore from "../../stores/cocktail_store";
 import Cookies from "js-cookie";
+import spinnerStore from "../../stores/spinner_store";
 
 Actions.register(GET_COCKTAILS, payload => {
   let params = {
@@ -23,6 +24,7 @@ Actions.register(GET_COCKTAILS, payload => {
   })
   .then(response => {
     cocktailStore.setCocktails(response.data.data);
+    spinnerStore.deactiveLoadingSpinner();
     Actions.finish(payload);
   }).catch((error) => {
     cocktailStore.setCocktails([]);
@@ -37,6 +39,7 @@ Actions.register(GET_RATED_COCKTAILS, payload => {
   Axios.get(Router.route(GET_RATED_COCKTAILS), {params: params})
   .then(response => {
     cocktailStore.setCocktails(response.data.data);
+    spinnerStore.deactiveLoadingSpinner();
     Actions.finish(payload);
   })
   .catch(error => handleError(error));
