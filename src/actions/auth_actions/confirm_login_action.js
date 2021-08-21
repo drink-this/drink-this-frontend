@@ -4,6 +4,7 @@ import Router, { checkStatus, handleError } from '../../core/router.js';
 import { CONFIRM_LOG_IN, GOOGLE_AUTH_SERVICE } from '../../constants.js';
 import googleAuthStore from "../../stores/google_auth_store";
 import Cookies from "js-cookie";
+import spinnerStore from "../../stores/spinner_store";
 
 Actions.register(CONFIRM_LOG_IN, payload => {
   Axios.get(Router.route(CONFIRM_LOG_IN), {
@@ -16,6 +17,7 @@ Actions.register(CONFIRM_LOG_IN, payload => {
     googleAuthStore.setAuthed(response.data.token);
     googleAuthStore.setIsUserNew(response.data.is_new);
     Cookies.set('service', GOOGLE_AUTH_SERVICE, { expires: 1 });
-    Actions.finish(payload)
+    spinnerStore.deactiveLoadingSpinner();
+    Actions.finish(payload);
   }).catch(handleError);
 });

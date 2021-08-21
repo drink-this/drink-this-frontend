@@ -11,11 +11,13 @@ import YelpSearch from './yelp_search.js';
 import ShowPage from './show_page.js';
 import Dashboard from './dashboard.js';
 import Rated from './rated.js';
+import LoadingSpinner from "./loading_spinner";
 
 export default function App () {
   return (
     <ProvideAuth>
       <Router>
+        <LoadingSpinner />
         <Switch>
           <PrivateRoute path="/dashboard">
             <Dashboard />
