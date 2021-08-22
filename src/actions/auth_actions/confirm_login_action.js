@@ -4,6 +4,7 @@ import Router, { checkStatus, handleError } from '../../core/router.js';
 import { CONFIRM_LOG_IN, GOOGLE_AUTH_SERVICE } from '../../constants.js';
 import googleAuthStore from "../../stores/google_auth_store";
 import Cookies from "js-cookie";
+import authMall from "../../stores/auth_mall";
 import spinnerStore from "../../stores/spinner_store";
 
 Actions.register(CONFIRM_LOG_IN, payload => {
@@ -15,9 +16,9 @@ Actions.register(CONFIRM_LOG_IN, payload => {
   .then(checkStatus)
   .then(response => {
     googleAuthStore.setAuthed(response.data.token);
-    googleAuthStore.setIsUserNew(response.data.is_new);
-    Cookies.set('service', GOOGLE_AUTH_SERVICE, { expires: 1 });
+    authMall.setIsUserNew(response.data.is_new);
+    authMall.setCurrentAuthService(GOOGLE_AUTH_SERVICE);
     spinnerStore.deactiveLoadingSpinner();
-    Actions.finish(payload);
+    Actions.finish(payload)
   }).catch(handleError);
 });

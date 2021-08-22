@@ -3,10 +3,9 @@ import StarterCocktails from './starter_cocktails.js';
 import { GET_ONBOARD_DRINKS } from '../constants.js';
 import AppDispatcher from '../core/dispatcher.js';
 import onboardStore from '../stores/onboard_store.js';
-import googleAuthStore from '../stores/google_auth_store.js';
 import { useEffect, useState } from 'react';
-import cocktailStore from '../stores/cocktail_store.js';
 import { useHistory } from 'react-router-dom';
+import authMall from '../stores/auth_mall.js';
 
 export default function Onboard(props) {
   const [cocktails, setCocktails] = useState([]);
@@ -17,12 +16,12 @@ export default function Onboard(props) {
   const setcocktails = () => {
     setCocktails(onboardStore.cocktails);
     setIsLoaded(true);
-    googleAuthStore.setIsUserNew('false');
+    authMall.setIsUserNew('false');
   }
 
   useEffect(() => {
     onboardStore.on(GET_ONBOARD_DRINKS, setcocktails);
-    if (googleAuthStore.isUserNew() === 'true') {
+    if (authMall.isUserNew()) {
       AppDispatcher.dispatch({
         action: GET_ONBOARD_DRINKS,
         emitOn: [{

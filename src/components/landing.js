@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import googleAuthStore from '../stores/google_auth_store';
 import AuthPanel from './auth_panel';
 import { useAuth } from './auth_provider';
 import WhiteLogo from './white_logo';
+import ageConfirmStore from '../stores/age_confirm_store'
 import AgeVerificationModal from './age_verification_modal.js';
+import authMall from '../stores/auth_mall';
 
 export default function Landing (props) {
   let history = useHistory();
@@ -26,10 +27,10 @@ export default function Landing (props) {
       </div>
     );
   } else {
-    let userIsAuthed = googleAuthStore.isAuthed();
+    let userIsAuthed = authMall.currentAuthService.isAuthed();
 
     auth.setUserAuthedState(userIsAuthed, () => {
-      if (googleAuthStore.isUserNew() == true) {
+      if (authMall.isUserNew() == true) {
         history.replace('/onboard');
       } else {
         history.replace('/dashboard');

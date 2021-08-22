@@ -6,6 +6,7 @@ import googleAuthStore from '../stores/google_auth_store';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from './auth_provider';
 import { useEffect } from 'react';
+import authMall from '../stores/auth_mall';
 import spinnerStore from '../stores/spinner_store';
 
 export default function GoogleSignIn() {
@@ -30,7 +31,7 @@ export default function GoogleSignIn() {
     let userIsAuthed = googleAuthStore.isAuthed();
 
     auth.setUserAuthedState(userIsAuthed, () => {
-      if (googleAuthStore.isUserNew() === 'true') {
+      if (authMall.isUserNew() === 'true') {
         history.replace('/onboard');
       } else {
         history.replace('/dashboard');

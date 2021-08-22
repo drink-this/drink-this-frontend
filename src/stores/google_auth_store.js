@@ -7,16 +7,8 @@ class GoogleAuthStore extends EventEmitter {
     return Cookies.get(GOOGLE_TOKEN_NAME) !== undefined
   }
 
-  isUserNew = () => {
-    return Cookies.get('type');
-  }
-
   setAuthed = (token) => {
     Cookies.set(GOOGLE_TOKEN_NAME, token, { expires: 1 });
-  }
-
-  setIsUserNew = (isNew) => {
-    Cookies.set('type', isNew, { expires: 1 });
   }
 }
 const googleAuthStore = new GoogleAuthStore();
