@@ -4,6 +4,7 @@ import Router from '../../core/router.js';
 import { GET_ONBOARD_DRINKS, GOOGLE_TOKEN_NAME } from '../../constants.js';
 import onboardStore from "../../stores/onboard_store";
 import Cookies from "js-cookie";
+import spinnerStore from "../../stores/spinner_store";
 
 Actions.register(GET_ONBOARD_DRINKS, payload => {
   let params = {
@@ -23,6 +24,7 @@ Actions.register(GET_ONBOARD_DRINKS, payload => {
   })
   .then(response => {
     onboardStore.setCocktails(response.data.data);
+    spinnerStore.deactiveLoadingSpinner();
     Actions.finish(payload);
   }).catch((error) => {
     onboardStore.setCocktails([]);

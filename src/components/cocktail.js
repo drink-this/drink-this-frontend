@@ -5,6 +5,7 @@ import { createBrowserHistory } from 'history';
 import { GET_A_RECOMMENDATION } from '../constants.js';
 import AppDispatcher from '../core/dispatcher.js';
 import cocktailStore from '../stores/cocktail_store.js';
+import spinnerStore from '../stores/spinner_store.js';
 
 export default class Cocktail extends React.Component {
 
@@ -22,6 +23,7 @@ export default class Cocktail extends React.Component {
   }
 
   handleFindNewDrink = () => {
+    spinnerStore.setLoadingSpinnerAsActive();
     AppDispatcher.dispatch({
       action: GET_A_RECOMMENDATION,
       emitOn: [{

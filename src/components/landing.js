@@ -4,22 +4,12 @@ import AuthPanel from './auth_panel';
 import { useAuth } from './auth_provider';
 import WhiteLogo from './white_logo';
 import ageConfirmStore from '../stores/age_confirm_store'
-import Modal from './modal.js';
+import AgeVerificationModal from './age_verification_modal.js';
 import authMall from '../stores/auth_mall';
 
 export default function Landing (props) {
   let history = useHistory();
   let auth = useAuth();
-  let [userConfirmed, setUserConfirmed] = useState(ageConfirmStore.isUserOfAge());
-
-  const userConfirm = () => {
-    ageConfirmStore.setUserOfAge('over21')
-    setUserConfirmed(true);
-  }
-
-  const underAge = () => {
-    window.open("https://www.cdc.gov/alcohol/fact-sheets/underage-drinking.htm");
-  }
 
   if (!auth.userAuthed()) {
     return (
@@ -33,11 +23,7 @@ export default function Landing (props) {
             <AuthPanel/>
           </div>
         </div>
-        <Modal
-        yes={userConfirm}
-        no={underAge}
-        cname={userConfirmed ? 'hidden' : 'block'}
-        />
+        <AgeVerificationModal/>
       </div>
     );
   } else {

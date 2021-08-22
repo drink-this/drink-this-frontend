@@ -5,12 +5,14 @@ import AppDispatcher from '../core/dispatcher.js';
 import cocktailStore from '../stores/cocktail_store.js';
 import googleAuthStore from '../stores/google_auth_store.js';
 import authMall from '../stores/auth_mall.js';
+import spinnerStore from '../stores/spinner_store';
 
 export default class ShowPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cocktail: {}, 
+      cocktail: new Map(),
+      previous: new Map(),
       isLoaded: false, 
       tagline: ''
     };
@@ -20,11 +22,23 @@ export default class ShowPage extends React.Component {
   }
 
   showcocktail = () => {
-    this.setState({cocktail: cocktailStore.cocktail, isLoaded: true, tagline: 'Have a...'});
+    let previous = this.state.cocktail;
+    this.setState({
+      cocktail: cocktailStore.cocktail, 
+      isLoaded: true, 
+      tagline: 'Have a...',
+      previous: previous
+    });
   }
 
   showrecommendation = () => {
-    this.setState({cocktail: cocktailStore.cocktail, isLoaded: true, tagline: 'You should have a...'});
+    let previous = this.state.cocktail;
+    this.setState({
+      cocktail: cocktailStore.cocktail, 
+      isLoaded: true, 
+      tagline: 'You should have a...',
+      previous: previous
+    });
   }
 
   checkIfUserIsNew = () => {
@@ -34,6 +48,7 @@ export default class ShowPage extends React.Component {
   }
 
   componentDidMount() {
+    spinnerStore.setLoadingSpinnerAsActive();
     cocktailStore.on(GET_A_COCKTAIL, this.showcocktail);
     cocktailStore.on(GET_A_RECOMMENDATION, this.showrecommendation);
 
@@ -65,9 +80,13 @@ export default class ShowPage extends React.Component {
   
   render () {
     if (!this.state.isLoaded) {
-      return <div className="font-playfair font-normal text-3xl text-center mx-56">Loading...</div>
+      if (this.state.previous.size !== 0) {
+        return <Cocktail cocktail={this.state.previous} tagline={ this.state.tagline }/>;
+      } else {
+        return null;
+      }
     } else {
-      return <Cocktail cocktail={this.state.cocktail} tagline={ this.state.tagline }/>
+      return <Cocktail cocktail={this.state.cocktail} tagline={ this.state.tagline }/>;
     }
   }
 }

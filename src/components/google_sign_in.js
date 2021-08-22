@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from './auth_provider';
 import { useEffect } from 'react';
 import authMall from '../stores/auth_mall';
+import spinnerStore from '../stores/spinner_store';
 
 export default function GoogleSignIn() {
   let auth = useAuth();
@@ -14,6 +15,7 @@ export default function GoogleSignIn() {
 
   const _onLoginSuccess = (response) => {
     let authToken = response.tokenId;
+    spinnerStore.setLoadingSpinnerAsActive();
 
     AppDispatcher.dispatch({
       action: CONFIRM_LOG_IN,

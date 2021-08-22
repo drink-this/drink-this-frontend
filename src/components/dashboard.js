@@ -44,7 +44,7 @@ const Dashboard = () => {
 
       <div id="rated" className="text-center font-playfair">
         <p className="text-3xl mb-4">Your top cocktails</p>
-        <div className="flex justify-between mx-40 space-x-10 mb-10">
+        <div className="flex justify-center mx-40 space-x-10 mb-10">
           {ratedCocktails.map((item, index) => {
             return (
               <Link to={`/cocktails/${item.id}`} className={'space-y-4'} key={item.id}>
@@ -59,7 +59,7 @@ const Dashboard = () => {
 
       <div id="discover" className="text-center font-playfair">
         <p className="text-3xl mb-4">Discover something new</p>
-        <div className="flex mx-40 space-x-10 mb-10">
+        <div className="flex justify-center mx-40 space-x-10 mb-10">
           {unrated.cocktails.map((item, index) => {
             return (
               <Link to={`/cocktails/${item.id}`} className={'space-y-4'} key={item.id}>
@@ -73,7 +73,7 @@ const Dashboard = () => {
 
       <div id="glass" className="text-center font-playfair">
         <p className="text-3xl mb-4">Cocktails in a <span className="italic">'{glass.type}'</span> glass</p>
-        <div className="flex justify-between mx-40 space-x-10 mb-10">
+        <div className="flex justify-center mx-40 space-x-10 mb-10">
           {glass.cocktails.map((item, index) => {
             return (
               <Link to={`/cocktails/${item.id}`} className={'space-y-4'} key={item.id}>
@@ -87,7 +87,7 @@ const Dashboard = () => {
 
       <div id="alcohol" className="text-center font-playfair">
         <p className="text-3xl mb-4">Cocktails with <span className="italic">'{alcohol.type}'</span></p>
-        <div className="flex justify-between mx-40 space-x-10 mb-10">
+        <div className="flex justify-center mx-40 space-x-10 mb-10">
           {alcohol.cocktails.map((item, index) => {
             return (
               <Link to={`/cocktails/${item.id}`} className={'space-y-4'} key={item.id}>
