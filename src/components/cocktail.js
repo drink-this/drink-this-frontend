@@ -6,21 +6,30 @@ import { GET_A_RECOMMENDATION } from '../constants.js';
 import AppDispatcher from '../core/dispatcher.js';
 import cocktailStore from '../stores/cocktail_store.js';
 import spinnerStore from '../stores/spinner_store.js';
+import { Link } from 'react-router-dom'
 
 export default class Cocktail extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.history = createBrowserHistory();
     this.loc = React.createRef()
     this.state = {
-      loc: ''
+      loc: '',
+      cocktail: props.cocktail
     }
   }
 
   updateQ = (e) => {
     this.setState({loc: this.loc.current.value})
   }
+
+  // shouldComponentUpdate = (nextProps, nextState) => {
+  //   console.log(this.props, this.state);
+  //   console.log(nextProps, nextState);
+  //   return true;
+  // }
 
   handleFindNewDrink = () => {
     spinnerStore.setLoadingSpinnerAsActive();
@@ -34,7 +43,7 @@ export default class Cocktail extends React.Component {
   }
 
   render() {
-    let { cocktail: {id, attributes}} = this.props;
+    let {id, attributes} = this.state.cocktail;
     let { name, recipe, instructions, thumbnail, rating } = attributes;
     instructions = instructions.split(/(?<=\.)/);
     return (
@@ -44,7 +53,7 @@ export default class Cocktail extends React.Component {
           <h1 className="font-playfair font-black text-6xl pb-2">{ name }</h1>
           <p className="font-montserrat italic">Rate me to improve your next recommendation</p>
           <div>
-            <Stars cname="flex pb-8 cursor-pointer" value={rating} cocktail_id={id}/>
+            <Stars cname="flex pb-8 cursor-pointer" value={rating} cocktail_id={id} key={Math.random().toFixed(2)}/>
           </div>
           <div className="flex space-x-10">
             <div>
