@@ -72,7 +72,7 @@ const Dashboard = () => {
       </div>
 
       <div id="glass" className="text-center font-playfair">
-        <p className="text-3xl mb-4">Cocktails in a <span className="italic">'{glass.type}'</span> glass</p>
+        <p className="text-3xl mb-4">Cocktails in a <span className="italic">'{glass.type}'</span></p>
         <div className="flex justify-center mx-40 space-x-10 mb-10">
           {glass.cocktails.map((item, index) => {
             return (
