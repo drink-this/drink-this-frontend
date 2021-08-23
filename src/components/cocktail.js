@@ -12,7 +12,6 @@ export default class Cocktail extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.history = createBrowserHistory();
     this.loc = React.createRef()
     this.state = {
@@ -24,12 +23,6 @@ export default class Cocktail extends React.Component {
   updateQ = (e) => {
     this.setState({loc: this.loc.current.value})
   }
-
-  // shouldComponentUpdate = (nextProps, nextState) => {
-  //   console.log(this.props, this.state);
-  //   console.log(nextProps, nextState);
-  //   return true;
-  // }
 
   handleFindNewDrink = () => {
     spinnerStore.setLoadingSpinnerAsActive();

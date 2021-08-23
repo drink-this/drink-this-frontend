@@ -33,7 +33,6 @@ const Dashboard = () => {
   if (!isLoaded) {
       return <div className="text-center font-playfair text-3xl">Loading...</div>
   } else {
-    console.log(info);
     let ratedCocktails = info.attributes.rated.cocktails.sort((a, b) => b.rating - a.rating)
     let {unrated, glass, alcohol} = info.attributes
   return (
