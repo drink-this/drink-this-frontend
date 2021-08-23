@@ -79,14 +79,19 @@ export default class ShowPage extends React.Component {
   }
   
   render () {
-    if (!this.state.isLoaded) {
-      if (this.state.previous.size !== 0) {
-        return <Cocktail cocktail={this.state.previous} tagline={ this.state.tagline }/>;
-      } else {
-        return null;
-      }
+    if (this.state.isLoaded) {
+      return <Cocktail cocktail={this.state.cocktail} tagline={ this.state.tagline } key={Math.random().toFixed(2)}/>;
     } else {
-      return <Cocktail cocktail={this.state.cocktail} tagline={ this.state.tagline }/>;
+      return null;
     }
+    // if (!this.state.isLoaded) {
+    //   if (this.state.previous.size !== 0) {
+    //     return <Cocktail cocktail={this.state.previous} tagline={ this.state.tagline }/>;
+    //   } else {
+    //     return null;
+    //   }
+    // } else {
+    //   return <Cocktail cocktail={this.state.cocktail} tagline={ this.state.tagline }/>;
+    // }
   }
 }
