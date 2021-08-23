@@ -27,9 +27,7 @@ export default function Landing (props) {
       </div>
     );
   } else {
-    let userIsAuthed = authMall.currentAuthService.isAuthed();
-
-    auth.setUserAuthedState(userIsAuthed, () => {
+    auth.setUserAuthedState(auth.userAuthed(), () => {
       if (authMall.isUserNew() == true) {
         history.replace('/onboard');
       } else {
