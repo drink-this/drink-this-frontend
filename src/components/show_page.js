@@ -3,7 +3,6 @@ import Cocktail from './cocktail.js';
 import { GET_A_COCKTAIL, GET_A_RECOMMENDATION } from '../constants.js';
 import AppDispatcher from '../core/dispatcher.js';
 import cocktailStore from '../stores/cocktail_store.js';
-import googleAuthStore from '../stores/google_auth_store.js';
 import authMall from '../stores/auth_mall.js';
 import spinnerStore from '../stores/spinner_store';
 
