@@ -3,7 +3,6 @@ import Axios from 'axios';
 import Router, { checkStatus, handleError } from '../../core/router.js';
 import { CONFIRM_LOG_IN, GOOGLE_AUTH_SERVICE } from '../../constants.js';
 import googleAuthStore from "../../stores/google_auth_store";
-import Cookies from "js-cookie";
 import authMall from "../../stores/auth_mall";
 import spinnerStore from "../../stores/spinner_store";
 
@@ -15,6 +14,7 @@ Actions.register(CONFIRM_LOG_IN, payload => {
   })
   .then(checkStatus)
   .then(response => {
+    console.log(response);
     googleAuthStore.setAuthed(response.data.token);
     authMall.setIsUserNew(response.data.is_new);
     authMall.setCurrentAuthService(GOOGLE_AUTH_SERVICE);
