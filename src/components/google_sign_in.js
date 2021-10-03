@@ -31,7 +31,7 @@ export default function GoogleSignIn() {
     let userIsAuthed = googleAuthStore.isAuthed();
 
     auth.setUserAuthedState(userIsAuthed, () => {
-      if (authMall.isUserNew() === 'true') {
+      if (authMall.isUserNew() == true) {
         history.replace('/onboard');
       } else {
         history.replace('/dashboard');
