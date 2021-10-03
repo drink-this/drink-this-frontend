@@ -14,7 +14,6 @@ Actions.register(CONFIRM_LOG_IN, payload => {
   })
   .then(checkStatus)
   .then(response => {
-    console.log(response);
     googleAuthStore.setAuthed(response.data.token);
     authMall.setIsUserNew(response.data.is_new);
     authMall.setCurrentAuthService(GOOGLE_AUTH_SERVICE);
